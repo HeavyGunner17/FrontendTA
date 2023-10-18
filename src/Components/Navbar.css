@@ -1,0 +1,14 @@
+.logo {
+    width: 90px;
+    height: 80px;
+}
+
+.title{
+font-family: 'Cormorant Infant', serif;
+font-weight: bold;
+}
+
+.botonRegSub{
+    display: flex;
+justify-content: end;
+}
