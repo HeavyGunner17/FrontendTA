@@ -1,24 +1,27 @@
 import { React, useState, useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import { Button, Container } from "react-bootstrap";
-import lupa from "../assets/lupa.png"
-import global from "../assets/global.png"
-import amiguitos from "../assets/amiguitos.png"
-import estrellitas from "../assets/estrellitas.svg"
-import estadisticas from "../assets/estadisticas.svg"
-import imagen2 from "../assets/imagen2.svg"
-import "./Home.css"
-import Cardsus from "../Components/Card.jsx"
+import lupa from "../assets/lupa.png";
+import global from "../assets/global.png";
+import amiguitos from "../assets/amiguitos.png";
+import estrellitas from "../assets/estrellitas.svg";
+import estadisticas from "../assets/estadisticas.svg";
+import imagen2 from "../assets/imagen2.svg";
+import "./Home.css";
 import Carousel from 'react-bootstrap/Carousel';
 import educacion from "../assets/educacion.jpg";
 import Tecnologica2 from "../assets/Tecnologica2.jpg"
-import gobierno from "../assets/gobierno.jpg"
+import gobierno from "../assets/gobierno.jpg";
 import Login from "./Login";
 import { useNavigate } from "react-router-dom";
+import trabajo from "../assets/trabajo.png";
+
+
+
 
 const Home = () => {
 
-const navegar = useNavigate()
+    const navegar = useNavigate()
 
     const [message, setMessage] = useState(false);
 
@@ -108,34 +111,43 @@ const navegar = useNavigate()
                     </div>
                 </div>
 
-                <div>
-                    <h2 className="info2">Crea encuestas y formularios online gratis en solo unos minutos</h2>
-                    <div>
-                        <p> Con uno de los softwares líderes en el mundo para creación de formularios y encuestas, pregunta, escucha y actúa rápido en función de las percepciones que obtengas.</p>
-                        <Button variant="light">Comienza Ahora</Button>
-                        <Button variant="warning" onClick={() => navegar('/conocenos')}>Conocenos</Button>
+                <div className="pino">
+                    <div className="d-flex align-items-center flex-row">
+                        <div>
+                            <h2 >Crea encuestas y formularios online gratis en solo unos minutos</h2>
+                            <p> Con uno de los softwares líderes en el mundo para creación de formularios y encuestas, pregunta, escucha y actúa rápido en función de las percepciones que obtengas.</p>
+                            <div className="d-flex justify-content-start">
+                                <Button variant="danger" className="mx-2" onClick={() =>navegar('/crearEncuesta')}>Comienza Ahora</Button>
+                                <Button variant="warning" onClick={() => navegar('/conocenos')}>Conócenos</Button>
+                            </div>
+                        </div>
+                        <img src={trabajo} style={{ width: 550, height: 400 }} />
                     </div>
                 </div>
 
-                <div>
-                    <h2>Obtén acceso a cientos de preguntas escritas por expertos</h2>
-                    <p>Aprovecha las plantillas y los cientos de preguntas escritas por expertos que puedes agregar a tus encuestas en segundos. Haz las preguntas correctas, minimiza los sesgos y obtén las respuestas que necesitas rápidamente.</p>
-                    <img src={estrellitas} alt="review" />
-
-                    <img src={imagen2} alt="info" />
-                    <h2>Recopila información y opiniones desde casi cualquier lugar</h2>
-                    <p>Recopila respuestas mediante enlaces web y correos electrónicos, o inserta encuestas y formularios en tu sitio web para conocer lo que realmente quiere la gente. Aprovecha nuestro panel mundial para recopilar percepciones valiosas sobre el mercado.</p>
-
-                    <h2>Descubre percepciones que te permitan actuar rápido</h2>
-                    <p>Analiza respuestas a gran escala con los sencillos informes que crea la plataforma, o haz y personaliza paneles de control avanzados que puedes compartir con tu equipo. También puedes exportar y analizar los datos en tu software favorito.</p>
-                    <img src={estadisticas} alt="estadisticas" />
+                <div className="my-5">
+                    <div className="d-flex flex-row justify-content-between my-5">
+                        <div style={{ width: 550 }}>
+                            <h2>Obtén acceso a cientos de preguntas escritas por expertos</h2>
+                            <p>Aprovecha las plantillas y los cientos de preguntas escritas por expertos que puedes agregar a tus encuestas en segundos. Haz las preguntas correctas, minimiza los sesgos y obtén las respuestas que necesitas rápidamente.</p>
+                        </div>
+                        <img src={estrellitas} alt="review" style={{ width: 550, height: 400 }} />
+                    </div>
+                    <div className="d-flex flex-row justify-content-between my-5">
+                        <img src={imagen2} alt="info" style={{ width: 550, height: 400 }} />
+                        <div style={{ width: 550 }}>
+                            <h2>Recopila información y opiniones desde casi cualquier lugar</h2>
+                            <p>Recopila respuestas mediante enlaces web y correos electrónicos, o inserta encuestas y formularios en tu sitio web para conocer lo que realmente quiere la gente. Aprovecha nuestro panel mundial para recopilar percepciones valiosas sobre el mercado.</p>
+                        </div>
+                    </div>
+                    <div className="d-flex flex-row justify-content-between my-5">
+                        <div style={{ width: 550 }}>
+                            <h2>Descubre percepciones que te permitan actuar rápido</h2>
+                            <p>Analiza respuestas a gran escala con los sencillos informes que crea la plataforma, o haz y personaliza paneles de control avanzados que puedes compartir con tu equipo. También puedes exportar y analizar los datos en tu software favorito.</p>
+                        </div>
+                        <img src={estadisticas} alt="estadisticas" style={{ width: 550, height: 400 }} /></div>
                 </div>
-                <h2>Averigua cómo Truth Answer ayuda a las empresas a impulsar el crecimiento y la innovación</h2>
-                <Cardsus titulo="Explora nuestras soluciones de investigación de mercado"
-                    texto="Sigue el ritmo de tu mercado y de tus clientes con soluciones flexibles que incorporan metodologías guiadas y percepciones basadas en inteligencia artificial."
-                    textboton="Más información"
-                    imagen="https://www.screengeek.net/wp-content/uploads/2023/09/blue-smurf-cat-meme.jpg"
-                />
+
             </Container>}
 
         </div >

@@ -1,3 +1,9 @@
 .text{
     font-size: 17px;
 }
+
+.pino {
+   border: 3px solid black;
+   padding: 5px;
+   border-radius: 10px;
+}
