@@ -15,7 +15,7 @@ import gobierno from "../assets/gobierno.jpg";
 import Login from "./Login";
 import { useNavigate } from "react-router-dom";
 import trabajo from "../assets/trabajo.png";
-
+import Footer from "../Components/Footer";
 
 
 
@@ -117,7 +117,7 @@ const Home = () => {
                             <h2 >Crea encuestas y formularios online gratis en solo unos minutos</h2>
                             <p> Con uno de los softwares líderes en el mundo para creación de formularios y encuestas, pregunta, escucha y actúa rápido en función de las percepciones que obtengas.</p>
                             <div className="d-flex justify-content-start">
-                                <Button variant="danger" className="mx-2" onClick={() =>navegar('/crearEncuesta')}>Comienza Ahora</Button>
+                                <Button variant="danger" className="mx-2" onClick={() => navegar('/crearEncuesta')}>Comienza Ahora</Button>
                                 <Button variant="warning" onClick={() => navegar('/conocenos')}>Conócenos</Button>
                             </div>
                         </div>
@@ -147,9 +147,8 @@ const Home = () => {
                         </div>
                         <img src={estadisticas} alt="estadisticas" style={{ width: 550, height: 400 }} /></div>
                 </div>
-
             </Container>}
-
+            <Footer />
         </div >
 
     )

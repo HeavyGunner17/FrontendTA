@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, Container } from "react-bootstrap"
 import { useState, useRef } from "react"
 import axios from "axios"
 
@@ -8,15 +8,16 @@ import axios from "axios"
 
 function Administracion() {
 
-    const navegar = useNavigate()
-    const ref = useRef()
+    const navegar = useNavigate();
+    const ref = useRef();
+    const refPreg = useRef();
     const [post, setPost] = useState({
         nombre: '',
         estado: '',
         preguntas: [],
-        respuestas: [],
         categoria: '',
     });
+    const [preguntas, setPreguntas] = useState([]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -31,6 +32,7 @@ function Administracion() {
 
     //funcion que crea post y manda a la base de datos
     const createPost = (e) => {
+        setPost()
         e.preventDefault();
         setPost(prevState => ({
             post: {
@@ -44,17 +46,30 @@ function Administracion() {
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
     }
-    const array = []
+    let preguntasArray = []
 
+
+    function agregarRespuesta() {
+        const respuesta = ref.current
+        preguntasArray.push(respuesta.value.toString())
+        ref.current.value = ""
+        console.log(preguntasArray)
+    }
 
     function agregarPregunta() {
-        const element = ref.current
-        array.push(element.value.toString())
+        let element = refPreg.current
+        const prevPregunta = preguntas
+        prevPregunta.push({ pregunta: element.value, respuestas: preguntasArray })
+
+        setPreguntas(prevPregunta)
+        console.log(preguntas)
+        preguntasArray = []
+        refPreg.current.value = ""
     }
 
 
     return (
-        <div>
+        <Container>
             <h2>Crear Encuesta</h2>
 
             <Form>
@@ -62,25 +77,31 @@ function Administracion() {
                     <Form.Control name="nombre" value={post.nombre} placeholder="Nombre" style={{ marginBottom: '1rem' }} onChange={handleChange} />
                     <Form.Select style={{ marginBottom: '1rem' }} onChange={handleChange}>  <option value="activo">Activo</option>
                         <option value="inactivo">Inactivo</option> </Form.Select>
-                    <div style={{ display: "flex" }}>
+                    <div style={{ display: "flex" }} >
 
                         <Form.Control name="preguntas"
-                            placeholder="Preguntas" style={{ marginBottom: '1rem' }}
+                            placeholder="Preguntas" style={{ marginBottom: '1rem' }} ref={refPreg} />
+
+                        <Button style={{ height: 38, fontWeight: "bold" }}
+                            variant="primary"
+                            onClick={() => agregarPregunta()}>Agregar Pregunta </Button>
+                    </div>
+                    <div style={{ display: "flex" }}>
+                        <Form.Control name="respuestas"
+                            placeholder="Respuestas" style={{ marginBottom: '1rem' }}
                             ref={ref} />
 
                         <Button style={{ width: 38, height: 38, fontWeight: "bold" }}
                             variant="primary"
-                            onClick={() => agregarPregunta()}>+ </Button>
-
+                            onClick={() => agregarRespuesta()}>+ </Button>
                     </div>
-                    <Form.Control name="respuestas" value={post.respuestas} placeholder="Respuestas" style={{ marginBottom: '1rem' }} onChange={handleChange} />
                     <Form.Control name="categoria" value={post.categoria} placeholder="Categoria" style={{ marginBottom: '1rem' }} onChange={handleChange} />
                 </Form.Group>
                 <Button onClick={createPost}>Crear Encuesta</Button>
             </Form>
 
 
-        </div>
+        </Container>
     )
 };
 
