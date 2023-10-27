@@ -39,7 +39,7 @@ function Posts() {
         window.location.reload();
     };
 
-    const updatePost = (id, nombre, estado, preguntas, respuestas, categoria) => {
+    const updatePost = (id, nombre, estado, preguntas, categoria) => {
         setUpdatedPost((prev) => {
             return {
                 ...prev,
@@ -47,7 +47,6 @@ function Posts() {
                 nombre: nombre,
                 estado: estado,
                 preguntas: preguntas,
-                respuestas: respuestas,
                 categoria: categoria,
             };
         });

@@ -19,40 +19,31 @@ function Administracion() {
     });
     const [preguntas, setPreguntas] = useState([]);
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
 
-        setPost((prev) => {
-            return {
-                ...prev,
-                [name]: value,
-            };
-        });
-    }
 
     //funcion que crea post y manda a la base de datos
     const createPost = (e) => {
-        setPost()
+        let preguntasState = preguntas
         e.preventDefault();
         setPost(prevState => ({
             post: {
                 ...prevState.post,
-                preguntas: array
+                preguntas: preguntasState
             }
         })
         )
-        axios
-            .post("http://localhost:5000/adm", post)
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err));
-    }
+        // axios
+        //     .post("http://localhost:5000/adm", post)
+        //     .then((res) => console.log(res))
+        //     .catch((err) => console.log(err));
+    console.log(post)}; 
     let preguntasArray = []
 
 
     function agregarRespuesta() {
         const respuesta = ref.current
         preguntasArray.push(respuesta.value.toString())
-        ref.current.value = ""
+        // ref.current.value = ""
         console.log(preguntasArray)
     }
 
@@ -64,7 +55,7 @@ function Administracion() {
         setPreguntas(prevPregunta)
         console.log(preguntas)
         preguntasArray = []
-        refPreg.current.value = ""
+        // refPreg.current.value = ""
     }
 
 
@@ -74,8 +65,8 @@ function Administracion() {
 
             <Form>
                 <Form.Group>
-                    <Form.Control name="nombre" value={post.nombre} placeholder="Nombre" style={{ marginBottom: '1rem' }} onChange={handleChange} />
-                    <Form.Select style={{ marginBottom: '1rem' }} onChange={handleChange}>  <option value="activo">Activo</option>
+                    <Form.Control name="nombre" value={post.nombre} placeholder="Nombre" style={{ marginBottom: '1rem' }} />
+                    <Form.Select style={{ marginBottom: '1rem' }}>  <option value="activo">Activo</option>
                         <option value="inactivo">Inactivo</option> </Form.Select>
                     <div style={{ display: "flex" }} >
 
@@ -95,7 +86,7 @@ function Administracion() {
                             variant="primary"
                             onClick={() => agregarRespuesta()}>+ </Button>
                     </div>
-                    <Form.Control name="categoria" value={post.categoria} placeholder="Categoria" style={{ marginBottom: '1rem' }} onChange={handleChange} />
+                    <Form.Control name="categoria" value={post.categoria} placeholder="Categoria" style={{ marginBottom: '1rem' }} />
                 </Form.Group>
                 <Button onClick={createPost}>Crear Encuesta</Button>
             </Form>
