@@ -1,0 +1,12 @@
+.back{
+        background-color:beige;
+        border-radius: 10px;
+        padding: 10px;
+}
+
+.miembro{
+        border: 1px solid rgba(11, 11, 11, 0.533);
+        padding: 10px;
+        background-color: white;
+        border-radius: 10px;
+}
