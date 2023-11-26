@@ -38,8 +38,8 @@ const Home = () => {
     return (
         <div>
 
-            <Navbar changeMessage={changeMessage} />
-            {message ? <Login /> : <Container>
+            <Navbar />
+            <Container>
                 <Carousel style={{
                     marginTop: 30
                 }}>
@@ -147,7 +147,7 @@ const Home = () => {
                         </div>
                         <img src={estadisticas} alt="estadisticas" style={{ width: 550, height: 400 }} /></div>
                 </div>
-            </Container>}
+            </Container>
             <Footer />
         </div >
 
