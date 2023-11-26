@@ -37,6 +37,33 @@ function Login() {
 
 
     async function handleLogin(e, user) {
+        console.log(e)
+        console.log(user)
+        e.preventDefault()
+        let dataUser = email
+        let dataPassword = password;
+
+        await axios.get(`http://localhost:5000/users/${user}`)
+            .then(res => {
+                console.log(email)
+                console.log(res)
+                if (res.data.email == dataUser && res.data.password == dataPassword) {
+                    console.log("son iguales")
+                    if (res.data.rol === "admin") {
+                        console.log('entrando if')
+                        navegar('/adm')
+                    } else {
+                        console.log('entrando else')
+                        navegar('/')
+                    }
+                } else {
+                    console.log('incorrecto')
+                }
+            })
+            .catch(err => console.log(err))
+
+
+    async function handleLogin(e, user) {
         e.preventDefault()
         let dataUser = email
         let dataPassword = password;
@@ -186,7 +213,7 @@ function Login() {
 
             </MDBContainer >
         </div>
-    );
+          )};
 }
 
-export default Login
+export default Login;
