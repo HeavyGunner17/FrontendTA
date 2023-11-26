@@ -10,6 +10,8 @@ import {
     MDBInput,
     MDBCheckbox
 } from 'mdb-react-ui-kit';
+// import Parse from 'parse/dist/parse.min.js'
+// import { Button, Divider, Input } from 'antd';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../Components/Navbar";
@@ -92,6 +94,38 @@ function Login() {
         //     .catch(err => console.log(err))
         await axios.post(`http://localhost:5000/users/${user}`, data)
     }
+
+// LogOut
+
+const handleLogOut = () =>{
+    localStorage.removeItem("User")
+    window.location.reload();
+}
+// const [currentUser, setCurrentUser] = useState(null);
+
+// Function that will return current user and also update current username
+// const getCurrentUser = async function () {
+//   const currentUser = await Parse.User.current();
+//   Update state variable holding current user
+//   setCurrentUser(currentUser);
+//   return currentUser;
+// };
+// const doUserLogOut = async function () {
+//     try {
+//       await Parse.User.logOut();
+//       To verify that current user is now empty, currentAsync can be used
+//       const currentUser = await Parse.User.current();
+//       if (currentUser === null) {
+//         alert('Success! No user is logged in anymore!');
+//       }
+//       Update state variable holding current user
+//       getCurrentUser();
+//       return true;
+//     } catch (error) {
+//       alert(`Error! ${error.message}`);
+//       return false;
+//     }
+//   };
 
     // registro() 
 
@@ -205,6 +239,10 @@ function Login() {
                             </div>
 
                             <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>
+                            <h1>User is logged in</h1>
+                        <button onClickCapture={handleLogOut}>
+                            logout user
+                        </button>
                         </form>
 
                     </MDBTabsPane>
