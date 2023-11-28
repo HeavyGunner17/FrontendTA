@@ -38,32 +38,6 @@ function Login() {
     };
 
 
-    async function handleLogin(e, user) {
-        console.log(e)
-        console.log(user)
-        e.preventDefault()
-        let dataUser = email
-        let dataPassword = password;
-
-        await axios.get(`http://localhost:5000/users/${user}`)
-            .then(res => {
-                console.log(email)
-                console.log(res)
-                if (res.data.email == dataUser && res.data.password == dataPassword) {
-                    console.log("son iguales")
-                    if (res.data.rol === "admin") {
-                        console.log('entrando if')
-                        navegar('/adm')
-                    } else {
-                        console.log('entrando else')
-                        navegar('/')
-                    }
-                } else {
-                    console.log('incorrecto')
-                }
-            })
-            .catch(err => console.log(err))
-
 
     async function handleLogin(e, user) {
         e.preventDefault()
@@ -74,61 +48,18 @@ function Login() {
             password: dataPassword
         }
 
-        // await axios.get(`http://localhost:5000/users/${user}`)
-        //     .then(res => {
-        //         console.log(email)
-        //         console.log(res)
-        //         if (res.data.email == dataUser && res.data.password == dataPassword) {
-        //             console.log("son iguales")
-        //             if (res.data.rol === "admin") {
-        //                 console.log('entrando if')
-        //                 navegar('/adm')
-        //             } else {
-        //                 console.log('entrando else')
-        //                 navegar('/')
-        //             }
-        //         } else {
-        //             console.log('incorrecto')
-        //         }
-        //     })
-        //     .catch(err => console.log(err))
-        await axios.post(`http://localhost:5000/users/${user}`, data)
+        await axios.post(`http://localhost:5000/users/${user}`, data).then(res => {
+            console.log(res.data)
+            localStorage.setItem('userToken', res.data.token)
+        })
     }
 
-// LogOut
+    // LogOut
 
-const handleLogOut = () =>{
-    localStorage.removeItem("User")
-    window.location.reload();
-}
-// const [currentUser, setCurrentUser] = useState(null);
-
-// Function that will return current user and also update current username
-// const getCurrentUser = async function () {
-//   const currentUser = await Parse.User.current();
-//   Update state variable holding current user
-//   setCurrentUser(currentUser);
-//   return currentUser;
-// };
-// const doUserLogOut = async function () {
-//     try {
-//       await Parse.User.logOut();
-//       To verify that current user is now empty, currentAsync can be used
-//       const currentUser = await Parse.User.current();
-//       if (currentUser === null) {
-//         alert('Success! No user is logged in anymore!');
-//       }
-//       Update state variable holding current user
-//       getCurrentUser();
-//       return true;
-//     } catch (error) {
-//       alert(`Error! ${error.message}`);
-//       return false;
-//     }
-//   };
-
-    // registro() 
-
+    const handleLogOut = () => {
+        localStorage.removeItem("User")
+        window.location.reload();
+    }
     const [nombre, setNombre] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -137,9 +68,10 @@ const handleLogOut = () =>{
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:5000/users', { nombre, username, email, password, rol: "usuario" })
+        console.log('asd')
+        axios.post('http://localhost:5000/users', { nombre, username, email, password })
             .then(res => {
-                console.log(res)
+                console.log(res.data)
             })
             .catch(err => console.log(err))
     }
@@ -240,9 +172,9 @@ const handleLogOut = () =>{
 
                             <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>
                             <h1>User is logged in</h1>
-                        <button onClickCapture={handleLogOut}>
-                            logout user
-                        </button>
+                            <button onClickCapture={handleLogOut}>
+                                logout user
+                            </button>
                         </form>
 
                     </MDBTabsPane>
@@ -251,7 +183,7 @@ const handleLogOut = () =>{
 
             </MDBContainer >
         </div>
-          )};
-}
+    )
+};
 
 export default Login;
