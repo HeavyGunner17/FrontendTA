@@ -75,7 +75,7 @@ function Login() {
         // window.location.reload();
     }
 
-
+    
     const [nombre, setNombre] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
