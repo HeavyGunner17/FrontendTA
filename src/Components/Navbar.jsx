@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,10 +7,31 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import TA2 from "../assets/TA2.png"
 import "./Navbar.css"
+import profile from "../assets/profile.png"
 
 
 
 const Navbarsus = ({ changeMessage }) => {
+
+    let isUserLogged = false;
+    let loggedUserData;
+
+
+    useEffect(() => {
+        if (sessionStorage.getItem('user') || localStorage.getItem('user')) {
+            if (sessionStorage.getItem('user')) {
+                isUserLogged = true;
+                loggedUserData = JSON.parse((sessionStorage.getItem('user')));
+                console.log('condicion 1')
+            } else {
+                isUserLogged = true;
+                loggedUserData = JSON.parse((localStorage.getItem('user')));
+                console.log('condicion 2')
+            }
+        }
+    }, []);
+
+    
 
     const navegar = useNavigate()
 
@@ -50,7 +71,13 @@ const Navbarsus = ({ changeMessage }) => {
                                     </NavDropdown.Item>
                                 </NavDropdown>
                                 <Nav.Link >
-                                    <Button variant="warning" className="botonRegSub" onClick={() => navegar('login')}>Iniciar sesion</Button></Nav.Link>
+
+                                    {isUserLogged ? (<img alt="loggedIn" src={profile}  width="35" height="35"/>) :
+                                       ( <Button variant="warning" className="botonRegSub" onClick={() => navegar('/login')}>Iniciar sesion</Button>
+                                    )}
+                                </Nav.Link>
+
+
                             </Nav>
                         </Navbar.Collapse></div>
 
@@ -58,6 +85,6 @@ const Navbarsus = ({ changeMessage }) => {
             </Navbar>
 
 
-        </div>);
+        </div >);
 };
 export default Navbarsus;
