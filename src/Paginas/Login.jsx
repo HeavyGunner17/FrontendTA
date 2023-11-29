@@ -56,9 +56,9 @@ function Login() {
                 if (res.data.ok) {
                     console.log(res.data)
                     if (rememberMe) {
-                        localStorage.setItem('user', JSON.stringify(res.data));
+                        window.localStorage.setItem('user', JSON.stringify(res.data));
                     } else {
-                        sessionStorage.setItem('user', JSON.stringify(res.data));
+                        window.sessionStorage.setItem('user', JSON.stringify(res.data));
                     }
                     navegar('/Home')
                 }
@@ -70,11 +70,7 @@ function Login() {
 
     // LogOut
 
-    const handleLogOut = () => {
-        localStorage.removeItem("userToken")
-        // window.location.reload();
-    }
-
+   
     
     const [nombre, setNombre] = useState('');
     const [username, setUsername] = useState('');
@@ -187,10 +183,7 @@ function Login() {
                             </div>
 
                             <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>
-                            <h1>User is logged in</h1>
-                            <button onClickCapture={handleLogOut}>
-                                logout user
-                            </button>
+                           
                         </form>
 
                     </MDBTabsPane>

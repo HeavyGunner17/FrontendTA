@@ -13,25 +13,31 @@ import profile from "../assets/profile.png"
 
 const Navbarsus = ({ changeMessage }) => {
 
-    let isUserLogged = false;
-    let loggedUserData;
+    const [logged, setLogged] = useState(false);
+    const [loggedUserData, setLoggedUserData] = useState('');
 
+    const handleLogOut = () => {
+        window.localStorage.clear()
+        window.sessionStorage.clear()
+        // window.location.reload();
+    }
 
     useEffect(() => {
-        if (sessionStorage.getItem('user') || localStorage.getItem('user')) {
-            if (sessionStorage.getItem('user')) {
-                isUserLogged = true;
-                loggedUserData = JSON.parse((sessionStorage.getItem('user')));
+        if (window.sessionStorage.getItem('user') || window.localStorage.getItem('user')) {
+            if (window.sessionStorage.getItem('user')) {
+                setLogged(true);
+                setLoggedUserData(JSON.parse((window.sessionStorage.getItem('user'))));
                 console.log('condicion 1')
             } else {
-                isUserLogged = true;
-                loggedUserData = JSON.parse((localStorage.getItem('user')));
+                setLogged(true);
+                setLoggedUserData(JSON.parse((window.localStorage.getItem('user'))));
                 console.log('condicion 2')
             }
         }
+        console.log(loggedUserData)
     }, []);
 
-    
+
 
     const navegar = useNavigate()
 
@@ -70,12 +76,19 @@ const Navbarsus = ({ changeMessage }) => {
                                         Tecnologia
                                     </NavDropdown.Item>
                                 </NavDropdown>
-                                <Nav.Link >
 
-                                    {isUserLogged ? (<img alt="loggedIn" src={profile}  width="35" height="35"/>) :
-                                       ( <Button variant="warning" className="botonRegSub" onClick={() => navegar('/login')}>Iniciar sesion</Button>
-                                    )}
-                                </Nav.Link>
+
+                                {logged ? (<div>
+                                    <NavDropdown title={<span>{loggedUserData.user}<img alt="loggedIn" src={profile} width="28" height="28" /></span>} id="basic-nav-dropdown">
+                                        <NavDropdown.Item href="#action/3.2">
+                                            Configuración
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item href="#action/3.3" onClick={() => handleLogOut}>Cerrar Sesion</NavDropdown.Item>
+                                    </NavDropdown>
+                                </div>) :
+                                    (<Nav.Link ><Button variant="warning" className="botonRegSub" onClick={() => navegar('/login')}>Iniciar sesion</Button>
+                                    </Nav.Link>)}
+
 
 
                             </Nav>
