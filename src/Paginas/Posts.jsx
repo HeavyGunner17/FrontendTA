@@ -11,8 +11,7 @@ function Posts() {
     const [posts, setPosts] = useState([])
     const navegar = useNavigate()
     const [show, setShow] = useState(false);
-    const [updatedPost, setUpdatedPost] = useState({ nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "" })
-
+    const [postToUpdate, setPostToUpdate] = useState({ id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "" })
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -39,39 +38,38 @@ function Posts() {
         window.location.reload();
     };
 
-    const updatePost = (id, nombre, estado, preguntas, categoria) => {
-        setUpdatedPost((prev) => {
-            console.log( setUpdatedPost((prev)) )
-            return {
-                ...prev,
-                id: id,
-                nombre: nombre,
-                estado: estado,
-                preguntas: preguntas,
-                categoria: categoria,
-            };
-        });
+    const updatePost = (id) => {
+        setPostToUpdate(posts.find((post) => post._id === id))
+        console.log(posts.find((post) => post._id === id), 'post')
         handleShow();
+    };
+
+
+    const saveUpdatedPost = () => {
+        console.log(postToUpdate)
+        console.log(postToUpdate._id)
+        axios.put(`http://localhost:5000/posts/${postToUpdate._id}`, postToUpdate)
+            .then(res => {
+                alert('salio biens')
+                window.location.reload();
+                handleClose();
+                setPostToUpdate({ id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "" })
+            })
+            .catch(err => {
+                alert('salio mals')
+                console.log(err)
+            });
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUpdatedPost(prev => {
+        setPostToUpdate(prev => {
             return ({
                 ...prev,
                 [name]: value
             })
         })
-    };
-
-
-    const saveUpdatedPost = () => {
-        console.log(updatedPost)
-        axios.put(`http://localhost:5000/update/${updatedPost.id._id}`, updatedPost)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-        handleClose();
-        window.location.reload();
+        console.log('soy una funcion trolls')
     };
 
 
@@ -113,7 +111,7 @@ function Posts() {
                                 )
                             }))}
                             <div className="d-flex">
-                                <Button onClick={() => updatePost(post)} style={{ width: "100%", marginRight: "1rem" }}>Actualizar</Button>
+                                <Button onClick={() => updatePost(post._id)} style={{ width: "100%", marginRight: "1rem" }}>Actualizar</Button>
                                 <Button onClick={() => deletePost(post._id)} style={{ width: "100%" }}>Borrar</Button></div>
                         </div>
                     )
@@ -128,27 +126,27 @@ function Posts() {
                         <Form>
                             <Form.Control placeholder="nombre"
                                 name="nombre"
-                                value={updatedPost.nombre ? updatedPost.nombre : ""}
+                                value={postToUpdate.nombre ? postToUpdate.nombre : ""}
                                 style={{ marginBottom: "1rem" }}
                                 onChange={handleChange} />
                             <Form.Select style={{ marginBottom: '1rem' }}
-                                value={updatedPost.estado ? updatedPost.estado : ""}
+                                value={postToUpdate.estado ? postToUpdate.estado : ""}
                                 onChange={handleChange}>
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>
                             </Form.Select>
                             {/* <Form.Control placeholder="preguntas"
                                 name="preguntas"
-                                value={updatedPost.preguntas ? updatedPost.preguntas : ""}
+                                value={postToUpdate.preguntas ? postToUpdate.preguntas : ""}
                                 style={{ marginBottom: "1rem" }}
                                 onChange={handleChange} />
                             <Form.Control placeholder="respuestas"
                                 name="respuestas"
-                                value={updatedPost.respuestas ? updatedPost.respuestas : ""}
+                                value={postToUpdate.respuestas ? postToUpdate.respuestas : ""}
                                 style={{ marginBottom: "1rem" }}
                                 onChange={handleChange} /> */}
                             <Form.Select style={{ marginBottom: '1rem' }}
-                                value={updatedPost.categoria ? updatedPost.categoria : ""}
+                                value={postToUpdate.categoria ? postToUpdate.categoria : ""}
                                 onChange={handleChange}>
                                 <option value="Educación">Educación</option>
                                 <option value="Politica">Politica</option>
