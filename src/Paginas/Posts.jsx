@@ -93,15 +93,21 @@ function Posts() {
                             <h4>{post.nombre}</h4>
                             <p>{post.estado}</p>
                             <p>{post.categoria}</p>
-                            {(post.preguntas.map((post,index) => {
-                                return(
-                                    <div key={index}>
+                            {(post.preguntas.map((post, index) => {
+                                return (
+                                    <div key={index}
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            margin: "1rem"
+                                        }}>
                                         <p>{post.pregunta}</p>
-                                        <ul>
-                                            {post.respuestas.map((resp,index) => 
-                                            <li key={index}>{resp}</li>
-                                            )}
-                                        </ul>
+                                        {post.respuestas.map((resp, index) =>
+                                            <label key={index}>
+                                                <input type="radio" name={post.pregunta} style={{ marginRight: "0.5rem" }} value={resp} />{resp}
+                                            </label>
+                                        )}
+
                                     </div>
                                 )
                             }))}
@@ -110,7 +116,54 @@ function Posts() {
                                 <Button onClick={() => deletePost(post._id)} style={{ width: "100%" }}>Borrar</Button></div>
                         </div>
                     )
-                })) : ( <h3>No hay datos.</h3>)}
+                })) : (<h3>No hay datos.</h3>)}
+
+
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Modificar Encuesta</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Control placeholder="nombre"
+                                name="nombre"
+                                value={updatedPost.nombre ? updatedPost.nombre : ""}
+                                style={{ marginBottom: "1rem" }}
+                                onChange={handleChange} />
+                            <Form.Select style={{ marginBottom: '1rem' }}
+                                value={updatedPost.estado ? updatedPost.estado : ""}
+                                onChange={handleChange}>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </Form.Select>
+                            <Form.Control placeholder="preguntas"
+                                name="preguntas"
+                                value={updatedPost.preguntas ? updatedPost.preguntas : ""}
+                                style={{ marginBottom: "1rem" }}
+                                onChange={handleChange} />
+                            <Form.Control placeholder="respuestas"
+                                name="respuestas"
+                                value={updatedPost.respuestas ? updatedPost.respuestas : ""}
+                                style={{ marginBottom: "1rem" }}
+                                onChange={handleChange} />
+                            <Form.Select style={{ marginBottom: '1rem' }}
+                                value={updatedPost.categoria ? updatedPost.categoria : ""}
+                                onChange={handleChange}>
+                                <option value="Educación">Educación</option>
+                                <option value="Politica">Politica</option>
+                                <option value="Tecnologia">Tecnologia</option>
+                            </Form.Select>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Cerrar
+                        </Button>
+                        <Button variant="primary" onClick={saveUpdatedPost}>
+                            Guardar cambios
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
 
                 {/* <h1>Posts</h1>
@@ -157,44 +210,7 @@ function Posts() {
             <Button onClick={() => navegar(-1)} style={{ width: "100%", marginBottom: "1rem" }}>Volver atras</Button>
 
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modificar Encuesta</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Control placeholder="nombre"
-                            name="nombre"
-                            value={updatedPost.nombre ? updatedPost.nombre : ""}
-                            style={{ marginBottom: "1rem" }}
-                            onChange={handleChange} />
-                        <Form.Control placeholder="estado"
-                            name="estado"
-                            value={updatedPost.estado ? updatedPost.estado : ""}
-                            onChange={handleChange} />
-                        <Form.Control placeholder="preguntas"
-                            name="preguntas"
-                            value={updatedPost.preguntas ? updatedPost.preguntas : ""}
-                            onChange={handleChange} />
-                        <Form.Control placeholder="respuestas"
-                            name="respuestas"
-                            value={updatedPost.respuestas ? updatedPost.respuestas : ""}
-                            onChange={handleChange} />
-                        <Form.Control placeholder="categoria"
-                            name="categoria"
-                            value={updatedPost.categoria ? updatedPost.categoria : ""}
-                            onChange={handleChange} />
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Cerrar
-                    </Button>
-                    <Button variant="primary" onClick={saveUpdatedPost}>
-                        Guardar cambios
-                    </Button>
-                </Modal.Footer>
-            </Modal> */}
+           */}
             </Container>
             <Footer />
         </div>

@@ -99,7 +99,11 @@ function Administracion() {
                         </Button>
                     </div>
 
-                    <Form.Control name="categoria" placeholder="Categoria" style={{ marginBottom: '1rem' }} ref={refCat} />
+                    <Form.Select style={{ marginBottom: '1rem' }} ref={refCat}>
+                        <option value="Educación">Educación</option>
+                        <option value="Politica">Politica</option>
+                        <option value="Tecnologia">Tecnologia</option>
+                    </Form.Select>
                 </Form.Group>
                 <Button onClick={createPost}>Guardar formulario</Button>
             </Form>
