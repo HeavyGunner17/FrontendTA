@@ -41,6 +41,7 @@ function Posts() {
 
     const updatePost = (id, nombre, estado, preguntas, categoria) => {
         setUpdatedPost((prev) => {
+            console.log( setUpdatedPost((prev)) )
             return {
                 ...prev,
                 id: id,
@@ -136,7 +137,7 @@ function Posts() {
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>
                             </Form.Select>
-                            <Form.Control placeholder="preguntas"
+                            {/* <Form.Control placeholder="preguntas"
                                 name="preguntas"
                                 value={updatedPost.preguntas ? updatedPost.preguntas : ""}
                                 style={{ marginBottom: "1rem" }}
@@ -145,7 +146,7 @@ function Posts() {
                                 name="respuestas"
                                 value={updatedPost.respuestas ? updatedPost.respuestas : ""}
                                 style={{ marginBottom: "1rem" }}
-                                onChange={handleChange} />
+                                onChange={handleChange} /> */}
                             <Form.Select style={{ marginBottom: '1rem' }}
                                 value={updatedPost.categoria ? updatedPost.categoria : ""}
                                 onChange={handleChange}>
