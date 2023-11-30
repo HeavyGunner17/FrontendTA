@@ -15,12 +15,6 @@ function Administracion() {
     const refNombre = useRef();
     const refCat = useRef();
 
-    // const [post, setPost] = useState({
-    //     nombre: String,
-    //     estado: String,
-    //     categoria: String,
-    //     preguntas: Array
-    // });
     const [preguntas, setPreguntas] = useState([]);
 
 
@@ -107,9 +101,8 @@ function Administracion() {
                 </Form.Group>
                 <Button onClick={createPost}>Guardar formulario</Button>
             </Form>
-            <Footer/>
-        </Container>
-    )   
+       <Footer/> </Container>
+   )
 };
 
 export default Administracion;

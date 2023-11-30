@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import Navbar from "../Components/Navbar";
 import { Button, Container } from "react-bootstrap";
 import lupa from "../assets/lupa.png";
@@ -12,7 +12,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import educacion from "../assets/educacion.jpg";
 import Tecnologica2 from "../assets/Tecnologica2.jpg"
 import gobierno from "../assets/gobierno.jpg";
-import Login from "./Login";
 import { useNavigate } from "react-router-dom";
 import trabajo from "../assets/trabajo.png";
 import Footer from "../Components/Footer";
@@ -28,12 +27,6 @@ const Home = () => {
     const changeMessage = (newMessage) => {
         setMessage(newMessage);
     }
-
-    // useEffect(() => {
-    //     if (message) {
-    //         setMessage(false)
-    //     }
-    // })
 
     return (
         <div>

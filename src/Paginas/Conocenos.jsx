@@ -9,7 +9,7 @@ import ana from "../assets/ana.jpg"
 import "./Conocenos.css"
 import Navbar from "../Components/Navbar";
 import { Container } from "react-bootstrap";
-
+import Footer from "../Components/Footer";
 
 function Conocenos() {
 
@@ -66,6 +66,7 @@ function Conocenos() {
                     </div>
                 </div>
             </Container>
+            <Footer/> 
         </div >
     )
 

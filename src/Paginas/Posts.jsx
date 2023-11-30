@@ -163,53 +163,6 @@ function Posts() {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-
-
-                {/* <h1>Posts</h1>
-            {posts ? (
-                <>
-                    {posts.map((post) => {
-                        return (
-                            <div
-                                key={post._id}
-                                style={{
-                                    marginBottom: "1rem",
-                                    border: "solid lightgray 1px",
-                                    borderRadius: "8px",
-                                }}>
-                                <h4>{post.nombre}</h4>
-                                <p style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    justifyContent: "space-between",
-                                    padding: "1rem",
-                                }}>{post.estado}</p>
-                                <div style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    justifyContent: "space-between",
-                                    padding: "1rem",
-                                }}>
-                                    <p>{post.preguntas}</p>
-                                    <p>{post.respuestas}</p>
-                                    <p>{post.categoria}</p>
-                                </div>
-
-                                <Button onClick={() => updatePost(post)} style={{ width: "100%", marginRight: "1rem" }}>Actualizar</Button>
-                                <Button onClick={() => deletePost(post._id)} style={{ width: "100%" }}>Borrar</Button>
-
-
-                            </div>
-                        );
-                    })};
-                </>
-            ) : (
-                ""
-            )}
-            <Button onClick={() => navegar(-1)} style={{ width: "100%", marginBottom: "1rem" }}>Volver atras</Button>
-
-
-           */}
             </Container>
             <Footer />
         </div>

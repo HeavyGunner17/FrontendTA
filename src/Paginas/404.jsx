@@ -1,6 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import Footer from '../Components/Footer'
+
+
 
 function error() {
   const navegar = navigate()
