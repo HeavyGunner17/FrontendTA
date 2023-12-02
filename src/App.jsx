@@ -20,6 +20,7 @@ function App() {
         <Route path="/adm" element={<Posts />} />
         <Route path="/login" element= {<Login/>} />
         <Route path='/conocenos' element={<Conocenos/>}/>
+        <Route path='/categoria' element={<Categoria/>}/>
         </Routes>
       </BrowserRouter>
 

@@ -67,15 +67,7 @@ const Navbarsus = ({ changeMessage }) => {
                                 <Nav.Link href="#adm" onClick={() => navegar('/adm')}>ADM</Nav.Link>
                                 <Nav.Link href="#crearEncuesta" onClick={() => navegar('/crearEncuesta')}>Crear encuesta</Nav.Link>
                                 <Nav.Link href="#aboutus" onClick={() => navegar('/conocenos')}>Conocenos</Nav.Link>
-                                <NavDropdown title="Categorias" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.2">
-                                        Politica
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Educación</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.4">
-                                        Tecnologia
-                                    </NavDropdown.Item>
-                                </NavDropdown>
+                                <Nav.Link href="#categoria" onClick={() => navegar('/categoria')}>Categoria</Nav.Link>
 
 
                                 {logged ? (<div>

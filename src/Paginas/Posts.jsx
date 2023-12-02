@@ -56,7 +56,7 @@ function Posts() {
                 setPostToUpdate({ id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "" })
             })
             .catch(err => {
-                alert('salio mals')
+                alert('salio mal')
                 console.log(err)
             });
     };
@@ -69,7 +69,7 @@ function Posts() {
                 [name]: value
             })
         })
-        console.log('soy una funcion trolls')
+        console.log('soy una funcion troll')
     };
 
 
