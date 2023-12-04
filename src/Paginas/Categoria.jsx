@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useState } from "react";
-import Item from "../Components/Items";
-
+import axios from "axios";
+import Navbar from '../Components/Navbar'
+import Footer from '../Components/Footer'
+import Button from 'react-bootstrap/Button';
 
 
 function Categoria() {
@@ -12,6 +13,8 @@ function Categoria() {
 
     const [categoriaList, setCategoriaList] = useState([]);
     const [selectCategoria, setSelectCategoria] = useState("");
+    const [posts, setPosts] = useState([]);
+    const [filteredPosts, setFilteredPosts] = useState([]);
 
     useEffect(() => {
         setCategoriaList(defaultCategorias);
@@ -24,108 +27,61 @@ function Categoria() {
         return categoriaList.filter((item) => item.categoria === selectCategoria);
     }
 
-let filteredList = useMemo(getFilteredList, [selectCategoria, categoriaList]);
+    let filteredList = useMemo(getFilteredList, [selectCategoria, categoriaList]);
 
     function handleCategoryChange(event) {
         setSelectCategoria(event.target.value);
     }
 
 
+    useEffect(() => {
+        axios.get("http://localhost:5000/posts")
+            .then((res) => {
+                setPosts(res.data);
+            })
+            .catch((err) => console.log(err))
+    }, [filteredPosts]);
+
+
+    function filtroCategoria(filtro) {
+        if(filtro){
+        let array =  posts.filter(post => post.categoria == filtro)
+        setFilteredPosts(array)
+}else{
+    setFilteredPosts(posts)
+}
+       
+
+    }
+
+
 
     return (
         <div>
-            <h1>Categorias</h1>
+            <Navbar />
+
             <div className="filter-container">
-                <div>Filtro de categorias </div>
+                <h2 style={{ marginLeft: "10px" }}>Categorias</h2>
                 <div>
                     <select
                         name="category-list"
                         id="category-list"
                         onChange={handleCategoryChange}
+                        style={{ marginLeft: "10px" }}
                     >
                         <option value="">Todas</option>
                         <option value="Politica">Politica</option>
                         <option value="Educación">Educación</option>
                         <option value="Tecnologia">Tecnologia</option>
                     </select>
+                    <Button variant="warning" 
+                    onClick={() => filtroCategoria(selectCategoria)} 
+                    style={{marginLeft:"10px"}} size="sm">Filtrar categoria</Button>
                 </div>
             </div>
-            <div className="polticaList">
-                {filteredList.map((element, index) => (
-                    <Item {...element} key={index} />
-                ))}
-            </div>
+            <Footer />
         </div>
     )
 };
-
-
-// import React, { useEffect, useMemo, useState } from "react";
-// import Item from "./components/Item";
-// import "./styles.css";
-
-// //Filter list by category in React JS
-// export default function App() {
-//   // Default Value
-//   var defaultSports = [
-//     { name: "Table Tennis", category: "Indoor" },
-//     { name: "Football", category: "Outdoor" },
-//     { name: "Swimming", category: "Aquatics" },
-//     { name: "Chess", category: "Indoor" },
-//     { name: "BaseBall", category: "Outdoor" }
-//   ];
-//   const [sportList, setSportList] = useState([]);
-
-//   const [selectedCategory, setSelectedCategory] = useState();
-
-//   // Add default value on page load
-//   useEffect(() => {
-//     setSportList(defaultSports);
-//   }, []);
-
-//   // Function to get filtered list
-//   function getFilteredList() {
-//     // Avoid filter when selectedCategory is null
-//     if (!selectedCategory) {
-//       return sportList;
-//     }
-//     return sportList.filter((item) => item.category === selectedCategory);
-//   }
-
-//   // Avoid duplicate function calls with useMemo
-//   var filteredList = useMemo(getFilteredList, [selectedCategory, sportList]);
-
-//   function handleCategoryChange(event) {
-//     setSelectedCategory(event.target.value);
-//   }
-
-//   return (
-//     <div className="app">
-//       <div className="filter-container">
-//         <div>Filter by Category:</div>
-//         <div>
-//           <select
-//             name="category-list"
-//             id="category-list"
-//             onChange={handleCategoryChange}
-//           >
-//             <option value="">All</option>
-//             <option value="Outdoor">Outdoor</option>
-//             <option value="Indoor">Indoor</option>
-//             <option value="Aquatics">Aquatics</option>
-//           </select>
-//         </div>
-//       </div>
-//       <div className="sport-list">
-//         {filteredList.map((element, index) => (
-//           <Item {...element} key={index} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-
-  
 
 export default Categoria;

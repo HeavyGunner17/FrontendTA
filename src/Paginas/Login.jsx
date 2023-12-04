@@ -10,8 +10,6 @@ import {
     MDBInput,
     MDBCheckbox
 } from 'mdb-react-ui-kit';
-// import Parse from 'parse/dist/parse.min.js'
-// import { Button, Divider, Input } from 'antd';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../Components/Navbar";
@@ -68,10 +66,8 @@ function Login() {
         }
     }
 
-    // LogOut
 
-   
-    
+
     const [nombre, setNombre] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -183,7 +179,7 @@ function Login() {
                             </div>
 
                             <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>
-                           
+
                         </form>
 
                     </MDBTabsPane>

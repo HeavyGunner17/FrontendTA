@@ -6,6 +6,7 @@ import Encuesta from './Paginas/Encuesta'
 import Posts from './Paginas/Posts'
 import Login from './Paginas/Login'
 import Conocenos from './Paginas/Conocenos'
+import Categoria from './Paginas/Categoria'
 
 
 function App() {

@@ -19,7 +19,6 @@ const Navbarsus = ({ changeMessage }) => {
     const handleLogOut = () => {
         window.localStorage.clear()
         window.sessionStorage.clear()
-        // window.location.reload();
     }
 
     useEffect(() => {
@@ -80,9 +79,6 @@ const Navbarsus = ({ changeMessage }) => {
                                 </div>) :
                                     (<Nav.Link ><Button variant="warning" className="botonRegSub" onClick={() => navegar('/login')}>Iniciar sesion</Button>
                                     </Nav.Link>)}
-
-
-
                             </Nav>
                         </Navbar.Collapse></div>
 
