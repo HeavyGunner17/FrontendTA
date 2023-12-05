@@ -50,7 +50,7 @@ function Posts() {
         console.log(postToUpdate._id)
         axios.put(`http://localhost:5000/posts/${postToUpdate._id}`, postToUpdate)
             .then(res => {
-                alert('salio biens')
+                alert('salio bien')
                 window.location.reload();
                 handleClose();
                 setPostToUpdate({ id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "" })
@@ -69,7 +69,6 @@ function Posts() {
                 [name]: value
             })
         })
-        console.log('soy una funcion troll')
     };
 
 
