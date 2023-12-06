@@ -10,7 +10,7 @@ import imagen2 from "../assets/imagen2.svg";
 import "./Home.css";
 import Carousel from 'react-bootstrap/Carousel';
 import educacion from "../assets/educacion.jpg";
-import Tecnologica2 from "../assets/Tecnologica2.jpg"
+import tecnologia2 from "../assets/tecnologia2.jpg"
 import gobierno from "../assets/gobierno.jpg";
 import { useNavigate } from "react-router-dom";
 import trabajo from "../assets/trabajo.png";
@@ -41,7 +41,7 @@ const Home = () => {
                         <img
                             className="d-block "
                             src={educacion}
-                            alt=""
+                            alt="Educación"
                             width={1500}
                             height={500}
                         />
@@ -66,7 +66,7 @@ const Home = () => {
                     <Carousel.Item>
                         <img
                             className="d-block"
-                            src={Tecnologica2}
+                            src={tecnologia2}
                             alt="Tecnologia"
                             width={1500}
                             height={500}
