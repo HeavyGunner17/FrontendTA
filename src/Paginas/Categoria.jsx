@@ -1,33 +1,24 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import Button from 'react-bootstrap/Button';
 import { Container } from "react-bootstrap";
+import Accordion from 'react-bootstrap/Accordion';
+import Pagination from 'react-bootstrap/Pagination';
 
 function Categoria() {
-    let defaultCategorias = [
-        { category: "Politica" },
-        { category: "Educación" },
-        { category: "Tecnologia" }]
 
-    const [categoriaList, setCategoriaList] = useState([]);
     const [selectCategoria, setSelectCategoria] = useState("");
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
 
-    useEffect(() => {
-        setCategoriaList(defaultCategorias);
-    }, []);
 
-    function getFilteredList() {
-        if (!selectCategoria) {
-            return categoriaList;
-        }
-        return categoriaList.filter((item) => item.categoria === selectCategoria);
+
+    function createKey(id) {
+        return (new Date().getTime() + id);
     }
 
-    let filteredList = useMemo(getFilteredList, [selectCategoria, categoriaList]);
 
     function handleCategoryChange(event) {
         setSelectCategoria(event.target.value);
@@ -38,20 +29,70 @@ function Categoria() {
         axios.get("http://localhost:5000/posts")
             .then((res) => {
                 setPosts(res.data);
+                setFilteredPosts(res.data);
+                console.log(posts);
             })
             .catch((err) => console.log(err))
-    }, [filteredPosts]);
+    }, []);
 
 
     function filtroCategoria(filtro) {
+        console.log(filtro)
         if (filtro) {
+            console.log('entrando if')
             let array = posts.filter(post => post.categoria == filtro)
+            console.log(array, 'array')
             setFilteredPosts(array)
         } else {
+            console.log('entrando else')
             setFilteredPosts(posts)
         }
+    }
+
+    function sendVotes(postId) {
+        console.log(postId)
+        axios.put(`http://localhost:5000/posts/${postToUpdate._id}`, postToUpdate)
+    }
+
+
+    //Pagination
+    const [postsPerPage] = useState(5);
+    const [offset, setOffset] = useState(1);
+    const [postsEnc, setAllPostsEnc] = useState([]);
+    const [pageCount, setPageCount] = useState(0)
+
+    const getPostData = (data) => {
+        return (
+            data.map(post => <div className="container" key={post.id}>
+                <p>User ID: {post.id}</p>
+                <p>Title: {post.title}</p>
+            </div>)
+        )
 
     }
+
+    const getAllPosts = async () => {
+        const res = await axios.get(`https://jsonplaceholder.typicode.com/posts`)
+        const data = res.data;
+        const slice = data.slice(offset - 1, offset - 1 + postsPerPage)
+
+        // For displaying Data
+        const postData = getPostData(slice)
+
+        // Using Hooks to set value
+        setAllPostsEnc(postData)
+        setPageCount(Math.ceil(data.length / postsPerPage))
+    }
+
+    const handlePageClick = (event) => {
+        const selectedPage = event.selected;
+        setOffset(selectedPage + 1)
+    };
+
+    useEffect(() => {
+        getAllPosts()
+    }, [offset])
+
 
     return (
         <div>
@@ -81,51 +122,74 @@ function Categoria() {
 
                 <div>
                     <h2 className="text-center mb-3">Lista de Encuestas</h2>
-                    {posts.length > 0 ? (posts.map((post) => {
+                    {filteredPosts.length > 0 ? (filteredPosts.map((post, index) => {
                         return (
-                            <div key={post._id}
-                                style={{
-                                    marginBottom: "1rem",
-                                    border: "solid lightgray 1px",
-                                    borderRadius: "8px"
-                                }}
-                            >
-                                <div style={{
-                                    margin: "1rem",
-                                    border: "solid lightgray 1px",
-                                    borderRadius: "8px"
-                                }}>
-                                    <h4>{post.nombre}</h4>
-                                    <p>{post.estado}</p>
-                                    <p>{post.categoria}</p>
-                                </div>
-                                <div className="d-flex">
-                        <Button style={{ width: "10%", marginRight: "1rem" }}>Ver</Button>
-                        </div>
-                            </div>
-                        )
+
+
+                            <div key={post._id}>
+                                <Accordion>
+                                    <Accordion.Item eventKey={post._id}>
+                                        <Accordion.Header>{post.nombre}</Accordion.Header>
+                                        <Accordion.Body>
+                                            <div className="d-flex justify-content-end">
+                                                <p>Categoría de encuesta: {post.categoria}</p>
+                                            </div>
+
+                                            <div>
+                                                {post.preguntas.map((pregunta) => {
+                                                    return (
+                                                        <div key={createKey(pregunta.pregunta)}>
+                                                            <h2 >
+                                                                {pregunta.pregunta}
+                                                            </h2>
+                                                            <ul>
+                                                                {pregunta.respuestas.map((respuesta) => {
+                                                                    return (
+                                                                        <div key={createKey(respuesta)}>
+                                                                            <input type="radio" name={pregunta.pregunta} />
+                                                                            <label style={{ marginLeft: "10px" }}>{respuesta}</label>
+                                                                        </div>
+                                                                    )
+                                                                })}
+                                                            </ul>
+                                                        </div>
+                                                    )
+                                                })}
+
+                                                <Button variant="primary" onClick={() => sendVotes(post._id)} style={{ width: "100%" }}>Enviar votos</Button>
+                                            </div>
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                </Accordion>
+
+                            </div>)
                     })) : (<h3>No hay datos.</h3>)}
-                    
-                    
-        </div>
+
+                    <div className="main-app">
+
+                        {/* Display all the posts */}
+                        {posts}
+
+                        {/* Using React Paginate */}
+                        <ReactPaginate
+                            previousLabel={"previous"}
+                            nextLabel={"next"}
+                            breakLabel={"..."}
+                            breakClassName={"break-me"}
+                            pageCount={pageCount}
+                            onPageChange={handlePageClick}
+                            containerClassName={"pagination"}
+                            subContainerClassName={"pages pagination"}
+                            activeClassName={"active"} />
+                    </div>
+
+
+                </div>
             </Container >
-        <Footer />
+
+
+            <Footer />
         </div >
     )
 };
 export default Categoria;
-
-
-{/* <div class="accordion accordion-flush" id="accordionFlushExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-      {post.nombre} {post.estado}
-      </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">{post.preguntas} {post.respuestas}</div>
-    </div>
-  </div>
-</div> */}
-   

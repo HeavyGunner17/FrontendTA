@@ -23,11 +23,34 @@ function Posts() {
     useEffect(() => {
         axios.get("http://localhost:5000/posts")
             .then((res) => {
-                console.log(res);
                 setPosts(res.data);
             })
             .catch((err) => console.log(err))
-    }, []);
+
+        let sessionUser = {userRole: ''};
+        let localUser = {userRole: ''};
+
+        if (window.sessionStorage.getItem('user')) {
+            sessionUser = JSON.parse(window.sessionStorage.getItem('user'))
+        }
+        if (window.localStorage.getItem('user')) {
+            localUser = JSON.parse(window.localStorage.getItem('user'))
+        }
+
+
+
+        if (sessionUser.userRole == 'admin' || localUser.userRole == 'admin') {
+            axios.get("http://localhost:5000/posts")
+                .then((res) => {
+                    console.log(res);
+                    setPosts(res.data);
+                })
+                .catch((err) => console.log(err))
+            console.log(postToUpdate.categoria, 'categoria')
+        } else {
+            navegar('/home')
+        }
+    }, [postToUpdate]);
 
 
     const deletePost = (id) => {
@@ -40,7 +63,6 @@ function Posts() {
 
     const updatePost = (id) => {
         setPostToUpdate(posts.find((post) => post._id === id))
-        console.log(posts.find((post) => post._id === id), 'post')
         handleShow();
     };
 
@@ -50,23 +72,25 @@ function Posts() {
         console.log(postToUpdate._id)
         axios.put(`http://localhost:5000/posts/${postToUpdate._id}`, postToUpdate)
             .then(res => {
-                alert('salio bien')
+                alert('salio bien');
                 window.location.reload();
                 handleClose();
                 setPostToUpdate({ id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "" })
             })
             .catch(err => {
-                alert('salio mal')
+                alert('salio mal');
                 console.log(err)
             });
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, estado, categoria, value } = e.target;
         setPostToUpdate(prev => {
             return ({
                 ...prev,
-                [name]: value
+                [name]: value,
+                [estado]: value,
+                [categoria]: value,
             })
         })
     };
@@ -88,9 +112,13 @@ function Posts() {
                                 borderRadius: "8px"
                             }}
                         >
-                            <h4>{post.nombre}</h4>
-                            <p>{post.estado}</p>
-                            <p>{post.categoria}</p>
+                            <div className="d-flex justify-content-between">
+                                <h2 style={{ marginLeft: "10px" }}>{post.nombre}</h2>
+                                <div style={{ marginRight: "10px" }}>
+                                    <p>Estado: {post.estado}</p>
+                                    <p>Categoría: {post.categoria}</p></div>
+                            </div>
+                            <h3 style={{ marginLeft: "10px" }}>Preguntas</h3>
                             {(post.preguntas.map((post, index) => {
                                 return (
                                     <div key={index}
@@ -101,9 +129,9 @@ function Posts() {
                                         }}>
                                         <p>{post.pregunta}</p>
                                         {post.respuestas.map((resp, index) =>
-                                            <label key={index}>
-                                                <input type="radio" name={post.pregunta} style={{ marginRight: "0.5rem" }} value={resp} />{resp}
-                                            </label>
+                                            <ul key={index}>
+                                                <li style={{ marginRight: "0.5rem" }}>{resp}</li>
+                                            </ul>
                                         )}
 
                                     </div>
@@ -123,34 +151,30 @@ function Posts() {
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
+
                             <Form.Control placeholder="nombre"
                                 name="nombre"
                                 value={postToUpdate.nombre ? postToUpdate.nombre : ""}
                                 style={{ marginBottom: "1rem" }}
                                 onChange={handleChange} />
+
                             <Form.Select style={{ marginBottom: '1rem' }}
+                                name="estado"
                                 value={postToUpdate.estado ? postToUpdate.estado : ""}
                                 onChange={handleChange}>
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>
                             </Form.Select>
-                            {/* <Form.Control placeholder="preguntas"
-                                name="preguntas"
-                                value={postToUpdate.preguntas ? postToUpdate.preguntas : ""}
-                                style={{ marginBottom: "1rem" }}
-                                onChange={handleChange} />
-                            <Form.Control placeholder="respuestas"
-                                name="respuestas"
-                                value={postToUpdate.respuestas ? postToUpdate.respuestas : ""}
-                                style={{ marginBottom: "1rem" }}
-                                onChange={handleChange} /> */}
+
                             <Form.Select style={{ marginBottom: '1rem' }}
+                                name="categoria"
                                 value={postToUpdate.categoria ? postToUpdate.categoria : ""}
                                 onChange={handleChange}>
                                 <option value="Educación">Educación</option>
                                 <option value="Politica">Politica</option>
                                 <option value="Tecnologia">Tecnologia</option>
                             </Form.Select>
+
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>

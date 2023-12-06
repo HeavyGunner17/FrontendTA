@@ -19,6 +19,7 @@ const Navbarsus = ({ changeMessage }) => {
     const handleLogOut = () => {
         window.localStorage.clear()
         window.sessionStorage.clear()
+        setLogged(false)
     }
 
     useEffect(() => {
@@ -74,7 +75,7 @@ const Navbarsus = ({ changeMessage }) => {
                                         <NavDropdown.Item href="#action/3.2">
                                             Configuración
                                         </NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.3" onClick={() => handleLogOut}>Cerrar Sesion</NavDropdown.Item>
+                                        <NavDropdown.Item href="#action/3.3" onClick={handleLogOut}>Cerrar Sesion</NavDropdown.Item>
                                     </NavDropdown>
                                 </div>) :
                                     (<Nav.Link ><Button variant="warning" className="botonRegSub" onClick={() => navegar('/login')}>Iniciar sesion</Button>
