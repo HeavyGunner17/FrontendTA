@@ -7,7 +7,7 @@ import Posts from './Paginas/Posts'
 import Login from './Paginas/Login'
 import Conocenos from './Paginas/Conocenos'
 import Categoria from './Paginas/Categoria'
-
+import ErrorG from './Paginas/ErrorG'
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
         <Route path="/login" element= {<Login/>} />
         <Route path='/conocenos' element={<Conocenos/>}/>
         <Route path='/categoria' element={<Categoria/>}/>
+        <Route path="error" element={<ErrorG />} />
         </Routes>
       </BrowserRouter>
 

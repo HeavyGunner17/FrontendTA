@@ -3,10 +3,14 @@ import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-k
 import TA3 from '../assets/TA3.png'
 import email from '../assets/email.png'
 import phone from '../assets/phone.png'
-
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function Footer() {
+
+  const navegar = useNavigate();
+
   return (
     <MDBFooter bgColor='light' className='text-center text-lg-start text-muted'>
 
@@ -24,19 +28,20 @@ function Footer() {
             <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Crea tu encuesta</h6>
               <p>
-                <a href='#!' className='text-reset'>
+
+                <Link to={'/error'}>
                   Politica
-                </a>
+                </Link>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
+                <Link to={'/error'}>
                   Educacion
-                </a>
+                </Link>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
+                <Link to={'/error'}>
                   Tecnologia
-                </a>
+                </Link>
               </p>
             </MDBCol>
 

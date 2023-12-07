@@ -10,7 +10,7 @@ import imagen2 from "../assets/imagen2.svg";
 import "./Home.css";
 import Carousel from 'react-bootstrap/Carousel';
 import educacion from "../assets/educacion.jpg";
-import Tecnologica2 from "../assets/Tecnologica2.jpg"
+import tecnologia2 from "../assets/tecnologia2.jpg"
 import gobierno from "../assets/gobierno.jpg";
 import { useNavigate } from "react-router-dom";
 import trabajo from "../assets/trabajo.png";
@@ -41,11 +41,11 @@ const Home = () => {
                         <img
                             className="d-block "
                             src={educacion}
-                            alt=""
-                            width={1500}
+                            alt="Educación"
+                            width={1200}
                             height={500}
                         />
-                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgba(177, 177, 177, 0.70)", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
+                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Educación</h5>
                             <p style={{ fontSize: 20 }}> Ofrece mejores experiencias en cada etapa del aprendizaje.</p>
                         </Carousel.Caption>
@@ -55,10 +55,10 @@ const Home = () => {
                             className="d-block"
                             src={gobierno}
                             alt="encuestas gubernamentales"
-                            width={1500}
+                            width={1200}
                             height={500}
                         />
-                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgba(177, 177, 177, 0.70)", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
+                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Politica</h5>
                             <p style={{ fontSize: 20 }}>Mejora los servicios gubernamentales.</p>
                         </Carousel.Caption>
@@ -66,12 +66,12 @@ const Home = () => {
                     <Carousel.Item>
                         <img
                             className="d-block"
-                            src={Tecnologica2}
+                            src={tecnologia2}
                             alt="Tecnologia"
-                            width={1500}
+                            width={1200}
                             height={500}
                         />
-                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgba(177, 177, 177, 0.70)", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
+                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Tecnología</h5>
                             <p style={{ fontSize: 20 }}>Construye mejores relaciones con los clientes, diseña productos exitosos e impulsa el crecimiento.</p>
                         </Carousel.Caption>

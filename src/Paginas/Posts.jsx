@@ -11,7 +11,7 @@ function Posts() {
     const [posts, setPosts] = useState([])
     const navegar = useNavigate()
     const [show, setShow] = useState(false);
-    const [postToUpdate, setPostToUpdate] = useState({ id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "" })
+    const [postToUpdate, setPostToUpdate] = useState({ email:"" ,id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "", anonimo:"" })
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -75,7 +75,7 @@ function Posts() {
                 alert('salio bien');
                 window.location.reload();
                 handleClose();
-                setPostToUpdate({ id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "" })
+                setPostToUpdate({ email:"", id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "", anonimo:"" })
             })
             .catch(err => {
                 alert('salio mal');

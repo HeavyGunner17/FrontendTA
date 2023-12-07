@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
@@ -53,12 +54,16 @@ function Categoria() {
 
     function filtroCategoria(filtro) {
         console.log(filtro)
+        console.log(filtro)
         if (filtro) {
+            console.log('entrando if')
             console.log('entrando if')
             let array = posts.filter(post => post.categoria == filtro)
             console.log(array, 'array')
+            console.log(array, 'array')
             setFilteredPosts(array)
         } else {
+            console.log('entrando else')
             console.log('entrando else')
             setFilteredPosts(posts)
         }
@@ -203,7 +208,11 @@ function Categoria() {
 
 
             <Footer />
+
+
+            <Footer />
         </div >
     )
 };
 export default Categoria;
+

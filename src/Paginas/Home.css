@@ -7,3 +7,11 @@
    padding: 5px;
    border-radius: 10px;
 }
+
+.carousel-control-prev-icon {
+    background-color: grey;
+}
+
+.carousel-control-next-icon {
+    background-color: grey;
+}
