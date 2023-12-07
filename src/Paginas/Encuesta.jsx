@@ -46,7 +46,6 @@ function Administracion() {
     //funcion que crea post y manda a la base de datos
     function createPost(e) {
         let preguntasState = preguntas
-
         let newFormValue = {
             nombre: refNombre.current.value,
             estado: refEstado.current.value,
@@ -57,8 +56,12 @@ function Administracion() {
         console.log(newFormValue)
         axios
             .post("http://localhost:5000/adm", newFormValue)
-            .then((res) => console.log(res))
+            .then((res) => {
+                console.log(res)
+                setPreguntas([])
+            })
             .catch((err) => console.log(err));
+
     };
 
 
@@ -101,8 +104,8 @@ function Administracion() {
                 </Form.Group>
                 <Button onClick={createPost}>Guardar formulario</Button>
             </Form>
-       <Footer/> </Container>
-   )
+            <Footer /> </Container>
+    )
 };
 
 export default Administracion;
