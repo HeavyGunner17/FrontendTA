@@ -14,6 +14,8 @@ function Administracion() {
     const refEstado = useRef();
     const refNombre = useRef();
     const refCat = useRef();
+    const refEmail = useRef();
+    const refAn = useRef();
 
     const [preguntas, setPreguntas] = useState([]);
 
@@ -48,16 +50,21 @@ function Administracion() {
         let preguntasState = preguntas
 
         let newFormValue = {
+            email: refEmail.current.value,
             nombre: refNombre.current.value,
             estado: refEstado.current.value,
             categoria: refCat.current.value,
-            preguntas: preguntasState
+            preguntas: preguntasState,
+            anonimo: refAn.current.value
         }
         e.preventDefault();
         console.log(newFormValue)
         axios
             .post("http://localhost:5000/adm", newFormValue)
-            .then((res) => console.log(res))
+            .then((res) => {
+                console.log(res)
+                setPreguntas([])
+            })
             .catch((err) => console.log(err));
     };
 
@@ -68,6 +75,7 @@ function Administracion() {
             <h2>Crear Encuesta</h2>
             <Form>
                 <Form.Group>
+
                     <Form.Control name="nombre" placeholder="Nombre" style={{ marginBottom: '1rem' }} ref={refNombre} />
                     <Form.Select style={{ marginBottom: '1rem' }} ref={refEstado}>
                         <option value="activo">Activo</option>
@@ -81,6 +89,10 @@ function Administracion() {
                             variant="primary"
                             onClick={() => agregarPregunta()}>Agregar Pregunta
                         </Button>
+                    </div>
+
+                    <div>
+                        <Form.Control type="email" placeholder="Email@ejemplo.com" style={{ marginBottom: '1rem' }} ref={refEmail} />
                     </div>
 
                     <div style={{ display: "flex" }}>
@@ -98,11 +110,20 @@ function Administracion() {
                         <option value="Politica">Politica</option>
                         <option value="Tecnologia">Tecnologia</option>
                     </Form.Select>
+
                 </Form.Group>
+                <div className="d-flex flex-column align-items-end">
+                <Form.Check
+                    type="switch"
+                    id="custom-switch"
+                    label="Encuesta Anonima"
+                    style={{ marginBottom:"15px"}}
+                />
                 <Button onClick={createPost}>Guardar formulario</Button>
+</div>
             </Form>
-       <Footer/> </Container>
-   )
+            <Footer /> </Container>
+    )
 };
 
 export default Administracion;

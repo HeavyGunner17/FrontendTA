@@ -42,10 +42,10 @@ const Home = () => {
                             className="d-block "
                             src={educacion}
                             alt="Educación"
-                            width={1500}
+                            width={1200}
                             height={500}
                         />
-                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgba(177, 177, 177, 0.70)", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
+                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Educación</h5>
                             <p style={{ fontSize: 20 }}> Ofrece mejores experiencias en cada etapa del aprendizaje.</p>
                         </Carousel.Caption>
@@ -55,10 +55,10 @@ const Home = () => {
                             className="d-block"
                             src={gobierno}
                             alt="encuestas gubernamentales"
-                            width={1500}
+                            width={1200}
                             height={500}
                         />
-                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgba(177, 177, 177, 0.70)", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
+                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Politica</h5>
                             <p style={{ fontSize: 20 }}>Mejora los servicios gubernamentales.</p>
                         </Carousel.Caption>
@@ -68,10 +68,10 @@ const Home = () => {
                             className="d-block"
                             src={tecnologia2}
                             alt="Tecnologia"
-                            width={1500}
+                            width={1200}
                             height={500}
                         />
-                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgba(177, 177, 177, 0.70)", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
+                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Tecnología</h5>
                             <p style={{ fontSize: 20 }}>Construye mejores relaciones con los clientes, diseña productos exitosos e impulsa el crecimiento.</p>
                         </Carousel.Caption>
