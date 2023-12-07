@@ -207,9 +207,6 @@ function Categoria() {
 
 
             <Footer />
-
-
-            <Footer />
         </div >
     )
 };

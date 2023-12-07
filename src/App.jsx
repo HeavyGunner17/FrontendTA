@@ -22,7 +22,7 @@ function App() {
         <Route path="/login" element= {<Login/>} />
         <Route path='/conocenos' element={<Conocenos/>}/>
         <Route path='/categoria' element={<Categoria/>}/>
-        <Route path="error" element={<ErrorG />} />
+        <Route path="/error" element={<ErrorG />} />
         </Routes>
       </BrowserRouter>
 

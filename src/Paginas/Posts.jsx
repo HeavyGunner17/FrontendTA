@@ -116,7 +116,8 @@ function Posts() {
                                 <h2 style={{ marginLeft: "10px" }}>{post.nombre}</h2>
                                 <div style={{ marginRight: "10px" }}>
                                     <p>Estado: {post.estado}</p>
-                                    <p>Categoría: {post.categoria}</p></div>
+                                    <p>Categoría: {post.categoria}</p>
+                                    <p>Email: {post.email}</p></div>
                             </div>
                             <h3 style={{ marginLeft: "10px" }}>Preguntas</h3>
                             {(post.preguntas.map((post, index) => {
