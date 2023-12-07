@@ -28,8 +28,8 @@ function Categoria() {
     function startUp() {
         if (filteredPosts.length != 0) {
             let arrays = [], size = 3;
-            for (let i = 0; i < posts.length; i += size) {
-                arrays.push(posts.slice(i, i + size));
+            for (let i = 0; i < filteredPosts.length; i += size) {
+                arrays.push(filteredPosts.slice(i, i + size));
             }
             setPaginatedPosts(arrays);
         } else {
@@ -102,50 +102,7 @@ function Categoria() {
                             style={{ marginLeft: "10px" }} size="sm">Filtrar categoria</Button>
                     </div>
                 </div>
-                {/* <div>
-                    <h2 className="text-center mb-3">Lista de Encuestas</h2>
-                    {filteredPosts.length > 0 ? (filteredPosts.map((post, index) => {
-                        return (
-                            <div key={post._id}>
-                                <Accordion>
-                                    <Accordion.Item eventKey={post._id}>
-                                        <Accordion.Header>{post.nombre}</Accordion.Header>
-                                        <Accordion.Body>
-                                            <div className="d-flex justify-content-end">
-                                                <p>Categoría de encuesta: {post.categoria}</p>
-                                            </div>
-                                            <div>
-                                                {post.preguntas.map((pregunta) => {
-                                                    return (
-                                                        <div key={createKey(pregunta.pregunta)}>
-                                                            <h2 >
-                                                                {pregunta.pregunta}
-                                                            </h2>
-                                                            <ul>
-                                                                {pregunta.respuestas.map((respuesta) => {
-                                                                    return (
-                                                                        <div key={createKey(respuesta)}>
-                                                                            <input type="radio" name={pregunta.pregunta} />
-                                                                            <label style={{ marginLeft: "10px" }}>{respuesta}</label>
-                                                                        </div>
-                                                                    )
-                                                                })}
-                                                            </ul>
-                                                        </div>
-                                                    )
-                                                })}
-
-                                                <Button variant="primary" onClick={() => sendVotes(post._id)} style={{ width: "100%" }}>Enviar votos</Button>
-                                            </div>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                </Accordion>
-                            </div>)
-                    })) : (<h3>No hay datos.</h3>)}
-                </div> */}
-
-
-
+             
                 <div>
                     <h2 className="text-center mb-3">Lista de Encuestas</h2>
                     {paginatedPosts[currentPage] ? (paginatedPosts[currentPage].map((post, index) => {
