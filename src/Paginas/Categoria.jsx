@@ -23,7 +23,8 @@ function Categoria() {
     const [currentPage, setCurrentPage] = useState(0);
 
 
-    const [redirectedCategory, setRedirectedCategory] = useState("");
+    const [redirectedCategory, setRedirectedCategory] = useState();
+    const [redirectedCategoryBool, setRedirectedCategoryBool] = useState(false);
 
     function createKey(id) {
         return (new Date().getTime() + id);
@@ -33,8 +34,12 @@ function Categoria() {
     }
 
     function startUp() {
-        if (redirectedCategory) {
+        if (redirectedCategory && !redirectedCategoryBool) {
             filtroCategoria(redirectedCategory);
+            setRedirectedCategoryBool(true)
+        } else{
+            setRedirectedCategory('')
+            setRedirectedCategoryBool(false)
         }
         if (filteredPosts.length != 0) {
             let arrays = [], size = 3;
@@ -43,12 +48,10 @@ function Categoria() {
             }
             setPaginatedPosts(arrays);
         } else {
-            console.log('else')
         }
     }
 
     function filtroCategoria(filtro) {
-        console.log(filtro, 'filtro')
         if (filtro) {
             let array = posts.filter(post => post.categoria == filtro)
             setFilteredPosts(array);
@@ -64,7 +67,6 @@ function Categoria() {
                 setFilteredPosts(res.data);
                 if (location.state !== null) {
                     setRedirectedCategory(location.state.category);
-                    console.log('entrando if 1')
                 }
             })
             .catch((err) => console.log(err))
@@ -72,7 +74,12 @@ function Categoria() {
 
     useEffect(() => {
         startUp()
-    }, [filteredPosts])
+    }, [filteredPosts,redirectedCategory])
+
+    useEffect(() => {
+        startUp()
+    }, [])
+
 
     function sendVotes(postId) {
         console.log(postId)
