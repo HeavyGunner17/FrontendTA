@@ -130,11 +130,11 @@ function Login() {
                                 <p className="text-center mt-3">o:</p>
                             </div>
 
-                            <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email' required onChange={(e) => setEmail(e.target.value)} />
-                            <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password' required onChange={(e) => setContraseña(e.target.value)} />
+                            <MDBInput wrapperClass='mb-4' label='Email ' id='form1' type='email' required onChange={(e) => setEmail(e.target.value)} />
+                            <MDBInput wrapperClass='mb-4' label='Contraseña' id='form2' type='password' required onChange={(e) => setContraseña(e.target.value)} />
 
                             <div className="d-flex justify-content-between mx-4 mb-4">
-                                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault1' label='Remember me' onChange={(e) => rememberMeHandler()} />
+                                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault1' label='Recordar contraseña' onChange={(e) => rememberMeHandler()} />
                                 <a href="!#">Olvidaste tu contraseña?</a>
                             </div>
 
@@ -169,10 +169,10 @@ function Login() {
                                 <p className="text-center mt-3">o:</p>
                             </div>
 
-                            <MDBInput wrapperClass='mb-4' label='Name' id='form6' type='text' required onChange={(e) => setNombre(e.target.value)} />
+                            <MDBInput wrapperClass='mb-4' label='Nombre' id='form6' type='text' required onChange={(e) => setNombre(e.target.value)} />
                             <MDBInput wrapperClass='mb-4' label='Username' id='form5' type='text' required onChange={(e) => setUsername(e.target.value)} />
                             <MDBInput wrapperClass='mb-4' label='Email' id='form3' type='email' required onChange={(e) => setEmail(e.target.value)} />
-                            <MDBInput wrapperClass='mb-4' label='Password' id='form4' type='password' required onChange={(e) => setContraseña(e.target.value)} />
+                            <MDBInput wrapperClass='mb-4' label='Contraseña' id='form4' type='password' required onChange={(e) => setContraseña(e.target.value)} />
 
                             <div className='d-flex justify-content-center mb-4'>
                                 <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='Leí y estoy deacuerdo con los terminos y condiciones' required />
