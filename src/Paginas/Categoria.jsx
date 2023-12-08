@@ -5,10 +5,14 @@ import Footer from '../Components/Footer'
 import Button from 'react-bootstrap/Button';
 import { Container } from "react-bootstrap";
 import Accordion from 'react-bootstrap/Accordion';
+import { useLocation } from "react-router-dom";
 
 
 function Categoria() {
 
+
+
+    const location = useLocation();
 
 
     const [selectCategoria, setSelectCategoria] = useState("");
@@ -18,6 +22,9 @@ function Categoria() {
     const [paginatedPosts, setPaginatedPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
 
+
+    const [redirectedCategory, setRedirectedCategory] = useState("");
+
     function createKey(id) {
         return (new Date().getTime() + id);
     }
@@ -26,6 +33,9 @@ function Categoria() {
     }
 
     function startUp() {
+        if (redirectedCategory) {
+            filtroCategoria(redirectedCategory);
+        }
         if (filteredPosts.length != 0) {
             let arrays = [], size = 3;
             for (let i = 0; i < filteredPosts.length; i += size) {
@@ -37,11 +47,25 @@ function Categoria() {
         }
     }
 
+    function filtroCategoria(filtro) {
+        console.log(filtro, 'filtro')
+        if (filtro) {
+            let array = posts.filter(post => post.categoria == filtro)
+            setFilteredPosts(array);
+        } else {
+            setFilteredPosts(posts);
+        }
+    }
+
     useEffect(() => {
         axios.get("http://localhost:5000/posts")
             .then((res) => {
                 setPosts(res.data);
                 setFilteredPosts(res.data);
+                if (location.state !== null) {
+                    setRedirectedCategory(location.state.category);
+                    console.log('entrando if 1')
+                }
             })
             .catch((err) => console.log(err))
     }, []);
@@ -50,39 +74,20 @@ function Categoria() {
         startUp()
     }, [filteredPosts])
 
-
-    function filtroCategoria(filtro) {
-        console.log(filtro)
-        console.log(filtro)
-        if (filtro) {
-            console.log('entrando if')
-            console.log('entrando if')
-            let array = posts.filter(post => post.categoria == filtro)
-            console.log(array, 'array')
-            console.log(array, 'array')
-            setFilteredPosts(array)
-        } else {
-            console.log('entrando else')
-            console.log('entrando else')
-            setFilteredPosts(posts)
-        }
-    }
-
     function sendVotes(postId) {
         console.log(postId)
-        // axios.put(`http://localhost:5000/posts/${postToUpdate._id}`, postToUpdate)
-    }
 
+    }
 
     function handlerPaginas(index) {
         setCurrentPage(index)
-        console.log(currentPage)
     }
 
     return (
         <div>
             <Navbar />
             <Container>
+
                 <div className="filter-container">
                     <h2 style={{ marginLeft: "10px" }}>Categorias</h2>
                     <div>
@@ -102,7 +107,7 @@ function Categoria() {
                             style={{ marginLeft: "10px" }} size="sm">Filtrar categoria</Button>
                     </div>
                 </div>
-             
+
                 <div>
                     <h2 className="text-center mb-3">Lista de Encuestas</h2>
                     {paginatedPosts[currentPage] ? (paginatedPosts[currentPage].map((post, index) => {
