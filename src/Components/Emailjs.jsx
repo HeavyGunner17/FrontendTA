@@ -20,7 +20,7 @@ function email() {
 
     return (
         <div>
-            Mensaje con la encuestas y sus respuestas elegidas
+            Mensaje de tu encuesta creada.
 
 
             <form ref={form} onSubmit={sendEmail}>

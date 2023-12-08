@@ -9,6 +9,7 @@ import TA2 from "../assets/TA2.png"
 import "./Navbar.css"
 import profile from "../assets/profile.png"
 import error from "../Paginas/ErrorG"
+import { faHourglass1 } from "@fortawesome/free-solid-svg-icons";
 
 
 const Navbarsus = ({ changeMessage }) => {
@@ -34,7 +35,6 @@ const Navbarsus = ({ changeMessage }) => {
                 console.log('condicion 2')
             }
         }
-        console.log(loggedUserData)
     }, []);
 
 
@@ -60,11 +60,12 @@ const Navbarsus = ({ changeMessage }) => {
                         </Navbar.Brand>
                     </div>
 
-                    <div>              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <div>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="#home" onClick={() => navegar('/')}>Inicio</Nav.Link>
-                                <Nav.Link href="#adm" onClick={() => navegar('/adm')}>ADM</Nav.Link>
+                               {loggedUserData.userRole == "admin" ? (<div><Nav.Link href="#adm" onClick={() => navegar('/adm')}>ADM</Nav.Link></div>): ""}
                                 <Nav.Link href="#crearEncuesta" onClick={() => navegar('/crearEncuesta')}>Crear encuesta</Nav.Link>
                                 <Nav.Link href="#aboutus" onClick={() => navegar('/conocenos')}>Conocenos</Nav.Link>
                                 <Nav.Link href="#categoria" onClick={() => navegar('/categoria')}>Categoria</Nav.Link>
