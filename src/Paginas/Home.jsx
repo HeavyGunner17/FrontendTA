@@ -12,7 +12,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import educacion from "../assets/educacion.jpg";
 import tecnologia2 from "../assets/tecnologia2.jpg"
 import gobierno from "../assets/gobierno.jpg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import trabajo from "../assets/trabajo.png";
 import Footer from "../Components/Footer";
 
@@ -26,6 +26,10 @@ const Home = () => {
 
     const changeMessage = (newMessage) => {
         setMessage(newMessage);
+    }
+
+    const toComponentB = (category) => {
+        navegar('/categoria', { state: { category: category } });
     }
 
     return (
@@ -44,6 +48,8 @@ const Home = () => {
                             alt="Educación"
                             width={1200}
                             height={500}
+                            onClick={() => toComponentB('Educación')}
+                            onKeyDown={console.log('verga')}
                         />
                         <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Educación</h5>
@@ -55,6 +61,7 @@ const Home = () => {
                             className="d-block"
                             src={gobierno}
                             alt="encuestas gubernamentales"
+                            onClick={() => toComponentB('Politica')}
                             width={1200}
                             height={500}
                         />
@@ -68,6 +75,7 @@ const Home = () => {
                             className="d-block"
                             src={tecnologia2}
                             alt="Tecnologia"
+                            onClick={() => toComponentB('Tecnologia')}
                             width={1200}
                             height={500}
                         />
