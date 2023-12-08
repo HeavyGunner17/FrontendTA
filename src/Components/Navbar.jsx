@@ -23,6 +23,7 @@ const Navbarsus = ({ changeMessage }) => {
         setLogged(false)
     }
 
+
     useEffect(() => {
         if (window.sessionStorage.getItem('user') || window.localStorage.getItem('user')) {
             if (window.sessionStorage.getItem('user')) {
@@ -40,7 +41,6 @@ const Navbarsus = ({ changeMessage }) => {
 
 
     const navegar = useNavigate()
-
 
     return (
         <div>
@@ -65,7 +65,7 @@ const Navbarsus = ({ changeMessage }) => {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="#home" onClick={() => navegar('/')}>Inicio</Nav.Link>
-                               {loggedUserData.userRole == "admin" ? (<div><Nav.Link href="#adm" onClick={() => navegar('/adm')}>ADM</Nav.Link></div>): ""}
+                                {loggedUserData.userRole == "admin" ? (<div><Nav.Link href="#adm" onClick={() => navegar('/adm')}>ADM</Nav.Link></div>) : ""}
                                 <Nav.Link href="#crearEncuesta" onClick={() => navegar('/crearEncuesta')}>Crear encuesta</Nav.Link>
                                 <Nav.Link href="#aboutus" onClick={() => navegar('/conocenos')}>Conocenos</Nav.Link>
                                 <Nav.Link href="#categoria" onClick={() => navegar('/categoria')}>Categoria</Nav.Link>

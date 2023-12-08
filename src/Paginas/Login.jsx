@@ -76,7 +76,6 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('asd')
         axios.post('http://localhost:5000/users', { nombre, username, email, password })
             .then(res => {
                 console.log(res.data)

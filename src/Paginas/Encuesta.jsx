@@ -90,12 +90,6 @@ function Administracion() {
                 <Form.Group>
 
 
-
-                    {/* <div>
-                        <Form.Control type="email" placeholder="Email@ejemplo.com" style={{ marginBottom: '1rem' }} ref={refEmail} />
-                    </div>
- */}
-
                     <Form.Control name="nombre" placeholder="Título de la encuesta" style={{ marginBottom: '1rem' }} ref={refNombre} />
 
                     <Form.Select style={{ marginBottom: '1rem' }} ref={refCat}>

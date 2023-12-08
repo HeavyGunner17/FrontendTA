@@ -5,7 +5,8 @@ import Footer from '../Components/Footer'
 import Button from 'react-bootstrap/Button';
 import { Container } from "react-bootstrap";
 import Accordion from 'react-bootstrap/Accordion';
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import error from "./ErrorG";
 
 
 function Categoria() {
@@ -37,7 +38,7 @@ function Categoria() {
         if (redirectedCategory && !redirectedCategoryBool) {
             filtroCategoria(redirectedCategory);
             setRedirectedCategoryBool(true)
-        } else{
+        } else {
             setRedirectedCategory('')
             setRedirectedCategoryBool(false)
         }
@@ -74,17 +75,11 @@ function Categoria() {
 
     useEffect(() => {
         startUp()
-    }, [filteredPosts,redirectedCategory])
+    }, [filteredPosts, redirectedCategory])
 
     useEffect(() => {
         startUp()
     }, [])
-
-
-    function sendVotes(postId) {
-        console.log(postId)
-
-    }
 
     function handlerPaginas(index) {
         setCurrentPage(index)
@@ -147,8 +142,8 @@ function Categoria() {
                                                         </div>
                                                     )
                                                 })}
-
-                                                <Button variant="primary" onClick={() => sendVotes(post._id)} style={{ width: "100%" }}>Enviar votos</Button>
+                                                <Link to={'/error'}>
+                                                    <Button variant="primary" style={{ width: "100%" }} > Enviar votos </Button></Link>
                                             </div>
                                         </Accordion.Body>
                                     </Accordion.Item>

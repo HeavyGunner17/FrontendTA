@@ -49,7 +49,7 @@ const Home = () => {
                             width={1200}
                             height={500}
                             onClick={() => toComponentB('Educación')}
-                            onKeyDown={console.log('verga')}
+                            onKeyDown={console.log('si anda')}
                         />
                         <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Educación</h5>
