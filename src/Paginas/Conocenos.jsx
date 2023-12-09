@@ -18,15 +18,15 @@ function Conocenos() {
         <div>
 
             <Navbar />
-            <Container className="back">
-                <div style={{ display: "flex", justifyContent: "center", marginTop: 50, textDecoration: "underline"}}>
+            <Container className="back" style={{ border: 'solid 3    px black', paddingBottom: '50px' }}>
+                <div style={{ display: "flex", justifyContent: "center", marginTop: 50, textDecoration: "underline" }}>
 
                     <h2>Nuestras creencias guían nuestros compromisos</h2>
                 </div>
                 <div>
                     <p>En nuestro análisis de materialidad, encuestamos a nuestros empleados, clientes, ejecutivos, entre otras personas, para determinar qué causas son más importantes para nosotros como empresa. A continuación se detallan los problemas relevantes para nuestros colaboradores clave.</p>
                 </div>
-                <div className="d-flex justify-content-around" style={{ marginTop: 20 }}>
+                <div className="d-flex justify-content-around flex-wrap flex-md-nowrap" style={{ marginTop: 20 }}>
                     <div>
                         <img src={seguridadInformatica} alt="" style={{ width: 50, height: 50, alignSelf: "center" }} />
                         <h3>Sólida seguridad y privacidad de los datos​</h3>
@@ -66,7 +66,7 @@ function Conocenos() {
                     </div>
                 </div>
             </Container>
-            <Footer/> 
+            <Footer />
         </div >
     )
 

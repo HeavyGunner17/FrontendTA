@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
-
+import Swal from 'sweetalert2'
 
 function Posts() {
     const [posts, setPosts] = useState([])
     const navegar = useNavigate()
     const [show, setShow] = useState(false);
-    const [postToUpdate, setPostToUpdate] = useState({ email:"" ,id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "", anonimo:"" })
+    const [postToUpdate, setPostToUpdate] = useState({ email: "", id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "", anonimo: "" })
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -27,8 +27,8 @@ function Posts() {
             })
             .catch((err) => console.log(err))
 
-        let sessionUser = {userRole: ''};
-        let localUser = {userRole: ''};
+        let sessionUser = '';
+        let localUser = '';
 
         if (window.sessionStorage.getItem('user')) {
             sessionUser = JSON.parse(window.sessionStorage.getItem('user'))
@@ -36,9 +36,6 @@ function Posts() {
         if (window.localStorage.getItem('user')) {
             localUser = JSON.parse(window.localStorage.getItem('user'))
         }
-
-
-
         if (sessionUser.userRole == 'admin' || localUser.userRole == 'admin') {
             axios.get("http://localhost:5000/posts")
                 .then((res) => {
@@ -48,6 +45,11 @@ function Posts() {
                 .catch((err) => console.log(err))
             console.log(postToUpdate.categoria, 'categoria')
         } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'No se ha iniciado sesión',
+                icon: 'warning',
+            })
             navegar('/home')
         }
     }, [postToUpdate]);
@@ -56,8 +58,22 @@ function Posts() {
     const deletePost = (id) => {
 
         axios.delete(`http://localhost:5000/delete/${id}`)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
+            .then(res => {
+                console.log(res)
+                Swal.fire({
+                    title: 'Enhorabuena',
+                    text: 'El proceso se ha realizado satisfactoriamente',
+                    icon: 'success',
+                })
+            })
+            .catch(err => {
+                console.log(err)
+                Swal.fire({
+                    title: 'Algo ha salido mal',
+                    text: err,
+                    icon: 'warning',
+                })
+            });
         window.location.reload();
     };
 
@@ -72,14 +88,21 @@ function Posts() {
         console.log(postToUpdate._id)
         axios.put(`http://localhost:5000/posts/${postToUpdate._id}`, postToUpdate)
             .then(res => {
-                alert('salio bien');
+                Swal.fire({
+                    title: 'Enhorabuena',
+                    text: 'El proceso se ha realizado satisfactoriamente',
+                    icon: 'success',
+                })
                 window.location.reload();
                 handleClose();
-                setPostToUpdate({ email:"", id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "", anonimo:"" })
+                setPostToUpdate({ email: "", id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "", anonimo: "" })
             })
             .catch(err => {
-                alert('salio mal');
-                console.log(err)
+                Swal.fire({
+                    title: 'Algo ha salido mal',
+                    text: err,
+                    icon: 'warning',
+                })
             });
     };
 

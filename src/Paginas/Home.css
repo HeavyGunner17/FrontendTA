@@ -9,9 +9,10 @@
 }
 
 .carousel-control-prev-icon {
-    background-color: grey;
+    background-color: rgb(0, 0, 0);
+    
 }
 
 .carousel-control-next-icon {
-    background-color: grey;
+    background-color: rgb(0, 0, 0);
 }

@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import TA2 from "../assets/TA2.png"
 import "./Navbar.css"
 import profile from "../assets/profile.png"
-import error from "../Paginas/ErrorG"
-import { faHourglass1 } from "@fortawesome/free-solid-svg-icons";
+import Swal from "sweetalert2";
+
 
 
 const Navbarsus = ({ changeMessage }) => {
@@ -20,6 +20,7 @@ const Navbarsus = ({ changeMessage }) => {
     const handleLogOut = () => {
         window.localStorage.clear()
         window.sessionStorage.clear()
+        setLoggedUserData('')
         setLogged(false)
     }
 
@@ -30,17 +31,28 @@ const Navbarsus = ({ changeMessage }) => {
                 setLogged(true);
                 setLoggedUserData(JSON.parse((window.sessionStorage.getItem('user'))));
                 console.log('condicion 1')
-            } else {
+            } else if (window.localStorage.getItem('user')) {
                 setLogged(true);
                 setLoggedUserData(JSON.parse((window.localStorage.getItem('user'))));
                 console.log('condicion 2')
             }
+            else {
+                setLogged(false);
+            }
         }
-    }, []);
+    }, [setLogged]);
 
 
 
     const navegar = useNavigate()
+
+    function llamarCartelMalvado() {
+        Swal.fire({
+            title: 'Ups...',
+            text: 'Para acceder a crear una encuesta debe iniciar sesión',
+            timer: 5000
+        })
+    }
 
     return (
         <div>
@@ -65,8 +77,8 @@ const Navbarsus = ({ changeMessage }) => {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="#home" onClick={() => navegar('/')}>Inicio</Nav.Link>
-                                {loggedUserData.userRole == "admin" ? (<div><Nav.Link href="#adm" onClick={() => navegar('/adm')}>ADM</Nav.Link></div>) : ""}
-                                <Nav.Link href="#crearEncuesta" onClick={() => navegar('/crearEncuesta')}>Crear encuesta</Nav.Link>
+                                {loggedUserData.userRole == "admin" && logged ? (<div><Nav.Link href="#adm" onClick={() => navegar('/adm')} disabled={!logged}>ADM</Nav.Link></div>) : ""}
+                                <Nav.Link href="#crearEncuesta" onClick={() => logged ? navegar('/crearEncuesta') : llamarCartelMalvado()} >Crear encuesta</Nav.Link>
                                 <Nav.Link href="#aboutus" onClick={() => navegar('/conocenos')}>Conocenos</Nav.Link>
                                 <Nav.Link href="#categoria" onClick={() => navegar('/categoria')}>Categoria</Nav.Link>
 

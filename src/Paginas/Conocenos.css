@@ -1,7 +1,8 @@
 .back{
-        background-color:beige;
+        background-color:rgba(245, 136, 11, 0.877);
         border-radius: 10px;
         padding: 10px;
+        border: 3px solid black;
 }
 
 .miembro{

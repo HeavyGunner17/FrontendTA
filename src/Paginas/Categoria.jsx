@@ -119,8 +119,9 @@ function Categoria() {
                                     <Accordion.Item eventKey={post._id}>
                                         <Accordion.Header>{post.nombre}</Accordion.Header>
                                         <Accordion.Body>
-                                            <div className="d-flex justify-content-end">
+                                            <div className="d-flex align-items-end flex-column">
                                                 <p>Categoría de encuesta: {post.categoria}</p>
+                                                <p>Creado por: {post.anonimo ? 'Anónimo' : post.email} </p>
                                             </div>
                                             <div>
                                                 {post.preguntas.map((pregunta) => {

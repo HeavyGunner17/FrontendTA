@@ -4,6 +4,7 @@ import { Form, Button, Container } from "react-bootstrap"
 import axios from "axios"
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
+import Swal from 'sweetalert2'
 
 
 function Administracion() {
@@ -17,16 +18,34 @@ function Administracion() {
     const refAn = useRef();
 
     const [preguntas, setPreguntas] = useState([]);
-
     const [loggedMail, setLoggedMail] = useState();
 
 
     useEffect(() => {
+
+
+
+
+        let sessionUser = '';
+        let localUser = '';
+
         if (window.sessionStorage.getItem('user')) {
-            setLoggedMail(JSON.parse(window.sessionStorage.getItem('user')))
+            sessionUser = JSON.parse(window.sessionStorage.getItem('user'))
         }
-        else if (window.localStorage.getItem('user')) {
-            setLoggedMail(JSON.parse(window.localStorage.getItem('user')))
+        if (window.localStorage.getItem('user')) {
+            localUser = JSON.parse(window.localStorage.getItem('user'))
+        }
+
+
+        if (sessionUser.userRole == 'admin' || sessionUser.userRole == 'usuario' || localUser.userRole == 'admin' || localUser.userRole == 'usuario') {
+            if (window.sessionStorage.getItem('user')) {
+                setLoggedMail(JSON.parse(window.sessionStorage.getItem('user')))
+            }
+            else if (window.localStorage.getItem('user')) {
+                setLoggedMail(JSON.parse(window.localStorage.getItem('user')))
+            }
+        } else {
+            navegar('/home')
         }
     }, [])
 
@@ -59,25 +78,35 @@ function Administracion() {
 
     //funcion que crea post y manda a la base de datos
     function createPost(e) {
-        let preguntasState = preguntas
-        let newFormValue = {
-            email: loggedMail.userEmail,
-            nombre: refNombre.current.value,
-            estado: 'activo',
-            categoria: refCat.current.value,
-            preguntas: preguntasState,
-            anonimo: refAn.current.checked
-        }
-        console.log(refAn)
-        e.preventDefault();
-        console.log(newFormValue)
-        axios
-            .post("http://localhost:5000/adm", newFormValue)
-            .then((res) => {
-                console.log(res)
-                setPreguntas([])
+
+        if (window.sessionStorage.getItem('user') || window.localStorage.getItem('user')) {
+            let preguntasState = preguntas
+            let newFormValue = {
+                email: loggedMail.userEmail,
+                nombre: refNombre.current.value,
+                estado: 'activo',
+                categoria: refCat.current.value,
+                preguntas: preguntasState,
+                anonimo: refAn.current.checked
+            }
+            e.preventDefault();
+            console.log(newFormValue)
+            axios
+                .post("http://localhost:5000/adm", newFormValue)
+                .then((res) => {
+                    console.log(res)
+                    setPreguntas([])
+                    preguntasArray = []
+                })
+                .catch((err) => console.log(err));
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'No se ha iniciado sesión',
+                icon: 'warning',
             })
-            .catch((err) => console.log(err));
+            navegar('/login')
+        }
 
     };
 
@@ -129,7 +158,7 @@ function Administracion() {
                         style={{ marginBottom: "15px" }}
                         ref={refAn}
                     />
-                    <Button onClick={createPost}>Guardar formulario</Button>
+                    <Button onClick={createPost}>Enviar cuestionario</Button>
                 </div>
             </Form>
             <Footer /> </Container>

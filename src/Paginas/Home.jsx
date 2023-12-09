@@ -46,12 +46,12 @@ const Home = () => {
                             className="d-block "
                             src={educacion}
                             alt="Educación"
-                            width={1200}
+                            width={"100%"}
                             height={500}
                             onClick={() => toComponentB('Educación')}
                             onKeyDown={console.log('si anda')}
                         />
-                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
+                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(20, 20, 20,  0.5 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Educación</h5>
                             <p style={{ fontSize: 20 }}> Ofrece mejores experiencias en cada etapa del aprendizaje.</p>
                         </Carousel.Caption>
@@ -62,10 +62,10 @@ const Home = () => {
                             src={gobierno}
                             alt="encuestas gubernamentales"
                             onClick={() => toComponentB('Politica')}
-                            width={1200}
+                            width={"100%"}
                             height={500}
                         />
-                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
+                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(20, 20, 20,  0.5 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Politica</h5>
                             <p style={{ fontSize: 20 }}>Mejora los servicios gubernamentales.</p>
                         </Carousel.Caption>
@@ -76,10 +76,10 @@ const Home = () => {
                             src={tecnologia2}
                             alt="Tecnologia"
                             onClick={() => toComponentB('Tecnologia')}
-                            width={1200}
+                            width={"100%"}
                             height={500}
                         />
-                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(180, 180, 180,  0.8 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
+                        <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(20, 20, 20,  0.5 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Tecnología</h5>
                             <p style={{ fontSize: 20 }}>Construye mejores relaciones con los clientes, diseña productos exitosos e impulsa el crecimiento.</p>
                         </Carousel.Caption>
@@ -93,7 +93,7 @@ const Home = () => {
                         <h1>Líder de la industria por más de 10 años a nivel mundial</h1>
                     </div>
 
-                    <div className="d-flex justify-content-around" style={{ marginTop: 20 }}>
+                    <div className="d-flex justify-content-around flex-wrap" style={{ marginTop: 20 }}>
                         <div className="d-flex align-items-center mb-3 flex-column text-center" style={{ maxWidth: 300 }}>
                             <img src={lupa} alt="lupita" style={{ width: 60, height: 60, alignSelf: "center" }} />
                             <h3 className="info">Más de 25 millones de preguntas cada día</h3>
@@ -110,44 +110,54 @@ const Home = () => {
                             <p className="text">Millones de usuarios activos que provienen de organizaciones de diferentes tamaños, industrias y etapas de desarrollo empresarial utilizan Truth Answer.</p>
                         </div>
                     </div>
+
+
                 </div>
 
                 <div className="pino">
-                    <div className="d-flex align-items-center flex-row">
-                        <div>
+                    <div className="d-flex align-items-center justify-content-center flex-column flex-md-row">
+                        <div className="text-center text-md-start">
                             <h2 >Crea encuestas y formularios online gratis en solo unos minutos</h2>
                             <p> Con uno de los softwares líderes en el mundo para creación de formularios y encuestas, pregunta, escucha y actúa rápido en función de las percepciones que obtengas.</p>
-                            <div className="d-flex justify-content-start">
+                            <div className="d-flex justify-content-center justify-content-md-start">
                                 <Button variant="danger" className="mx-2" onClick={() => navegar('/crearEncuesta')}>Comienza Ahora</Button>
-                                <Button variant="warning" onClick={() => navegar('/conocenos')}>Conócenos</Button>
+                                <Button variant="warning" onClick={() => navegar('/conocenos')}>Conocenos</Button>
                             </div>
                         </div>
-                        <img src={trabajo} style={{ width: 550, height: 400 }} />
+                        <img src={trabajo} style={{ width: "50%" }} />
                     </div>
                 </div>
 
                 <div className="my-5">
-                    <div className="d-flex flex-row justify-content-between my-5">
-                        <div style={{ width: 550 }}>
+
+                    <div className="d-flex align-items-center justify-content-center flex-column flex-md-row">
+                        <div className="text-center text-md-start">
                             <h2>Obtén acceso a cientos de preguntas escritas por expertos</h2>
                             <p>Aprovecha las plantillas y los cientos de preguntas escritas por expertos que puedes agregar a tus encuestas en segundos. Haz las preguntas correctas, minimiza los sesgos y obtén las respuestas que necesitas rápidamente.</p>
                         </div>
-                        <img src={estrellitas} alt="review" style={{ width: 550, height: 400 }} />
+                        <img src={estrellitas} alt="review" style={{ width: "50%" }} />
                     </div>
-                    <div className="d-flex flex-row justify-content-between my-5">
-                        <img src={imagen2} alt="info" style={{ width: 550, height: 400 }} />
-                        <div style={{ width: 550 }}>
+
+                    <div className="d-flex align-items-center justify-content-center flex-column-reverse flex-md-row mt-4">
+                        <img src={imagen2} alt="info" style={{ width: "50%" }} />
+                        <div className="text-center text-md-end">
                             <h2>Recopila información y opiniones desde casi cualquier lugar</h2>
                             <p>Recopila respuestas mediante enlaces web y correos electrónicos, o inserta encuestas y formularios en tu sitio web para conocer lo que realmente quiere la gente. Aprovecha nuestro panel mundial para recopilar percepciones valiosas sobre el mercado.</p>
                         </div>
                     </div>
-                    <div className="d-flex flex-row justify-content-between my-5">
-                        <div style={{ width: 550 }}>
+
+                    <div className="d-flex align-items-center justify-content-center flex-column flex-md-row">
+                        <div className="text-center text-md-start">
                             <h2>Descubre percepciones que te permitan actuar rápido</h2>
                             <p>Analiza respuestas a gran escala con los sencillos informes que crea la plataforma, o haz y personaliza paneles de control avanzados que puedes compartir con tu equipo. También puedes exportar y analizar los datos en tu software favorito.</p>
                         </div>
-                        <img src={estadisticas} alt="estadisticas" style={{ width: 550, height: 400 }} /></div>
+                        <img src={estadisticas} alt="estadisticas" style={{ width: "50%" }} />
+                    </div>
+
                 </div>
+
+
+
             </Container>
             <Footer />
         </div >
