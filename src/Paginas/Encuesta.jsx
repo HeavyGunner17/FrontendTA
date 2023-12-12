@@ -92,7 +92,7 @@ function Administracion() {
             e.preventDefault();
             console.log(newFormValue)
             axios
-                .post("http://localhost:5000/adm", newFormValue)
+                .post("https://truthanswer-backend.onrender.com/adm", newFormValue)
                 .then((res) => {
                     console.log(res)
                     setPreguntas([])

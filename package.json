@@ -1,7 +1,7 @@
 {
   "name": "truth-answer",
   "private": true,
-  "proxy": "http://localhost:5000/",
+  "proxy": "truthanswer-backend.onrender.com",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

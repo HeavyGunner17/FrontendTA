@@ -6,8 +6,6 @@ import Button from 'react-bootstrap/Button';
 import { Container } from "react-bootstrap";
 import Accordion from 'react-bootstrap/Accordion';
 import { Link, useLocation } from "react-router-dom";
-import error from "./ErrorG";
-
 
 function Categoria() {
 
@@ -62,7 +60,7 @@ function Categoria() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:5000/posts")
+        axios.get("https://truthanswer-backend.onrender.com/posts")
             .then((res) => {
                 setPosts(res.data);
                 setFilteredPosts(res.data);

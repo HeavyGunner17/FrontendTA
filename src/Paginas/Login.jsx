@@ -51,7 +51,7 @@ function Login() {
         }
 
         try {
-            await axios.post(`http://localhost:5000/users/${user}`, data).then(res => {
+            await axios.post(`https://truthanswer-backend.onrender.com/users/${user}`, data).then(res => {
                 if (res.data.ok) {
                     console.log(res.data)
                     if (rememberMe) {
@@ -81,7 +81,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:5000/users', { nombre, username, email, password })
+        axios.post('https://truthanswer-backend.onrender.com/users', { nombre, username, email, password })
             .then(res => {
                 console.log(res.data)
             })

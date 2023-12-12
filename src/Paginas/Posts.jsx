@@ -21,7 +21,7 @@ function Posts() {
 
 
     useEffect(() => {
-        axios.get("http://localhost:5000/posts")
+        axios.get("https://truthanswer-backend.onrender.com/posts")
             .then((res) => {
                 setPosts(res.data);
             })
@@ -37,7 +37,7 @@ function Posts() {
             localUser = JSON.parse(window.localStorage.getItem('user'))
         }
         if (sessionUser.userRole == 'admin' || localUser.userRole == 'admin') {
-            axios.get("http://localhost:5000/posts")
+            axios.get("https://truthanswer-backend.onrender.com/posts")
                 .then((res) => {
                     console.log(res);
                     setPosts(res.data);
@@ -57,7 +57,7 @@ function Posts() {
 
     const deletePost = (id) => {
 
-        axios.delete(`http://localhost:5000/delete/${id}`)
+        axios.delete(`https://truthanswer-backend.onrender.com/delete/${id}`)
             .then(res => {
                 console.log(res)
                 Swal.fire({
@@ -86,7 +86,7 @@ function Posts() {
     const saveUpdatedPost = () => {
         console.log(postToUpdate)
         console.log(postToUpdate._id)
-        axios.put(`http://localhost:5000/posts/${postToUpdate._id}`, postToUpdate)
+        axios.put(`https://truthanswer-backend.onrender.com/posts/${postToUpdate._id}`, postToUpdate)
             .then(res => {
                 Swal.fire({
                     title: 'Enhorabuena',
