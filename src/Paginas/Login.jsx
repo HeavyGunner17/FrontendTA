@@ -17,6 +17,7 @@ import facebook from "../assets/facebook.ico"
 import twitter from "../assets/twitter.ico"
 import google from "../assets/google.ico"
 import github from "../assets/github.ico"
+import { Link } from 'react-router-dom';
 
 
 function Login() {
@@ -114,19 +115,23 @@ function Login() {
 
                                 <div className='d-flex justify-content-between mx-auto' style={{ width: '40%' }}>
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                        <img src={facebook} alt="" style={{ width: 30, height: 30 }} />
+                                        <Link to={'/error'}>
+                                            <img src={facebook} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                        <img src={twitter} alt="" style={{ width: 30, height: 30 }} />
+                                        <Link to={'/error'}>
+                                            <img src={twitter} alt="" style={{ width: 30, height: 30 }} /> </Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                        <img src={google} alt="" style={{ width: 30, height: 30 }} />
+                                        <Link to={'/error'}>
+                                        <img src={google} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                        <img src={github} alt="" style={{ width: 30, height: 30 }} />
+                                    <Link to={'/error'}>
+                                        <img src={github} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
                                 </div>
 
@@ -156,19 +161,23 @@ function Login() {
 
                                 <div className='d-flex justify-content-between mx-auto' style={{ width: '40%' }}>
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                        <img src={facebook} alt="" style={{ width: 30, height: 30 }} />
+                                    <Link to={'/error'}>
+                                        <img src={facebook} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                        <img src={twitter} alt="" style={{ width: 30, height: 30 }} />
+                                    <Link to={'/error'}>
+                                        <img src={twitter} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                        <img src={google} alt="" style={{ width: 30, height: 30 }} />
+                                    <Link to={'/error'}>
+                                        <img src={google} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                        <img src={github} alt="" style={{ width: 30, height: 30 }} />
+                                    <Link to={'/error'}>
+                                        <img src={github} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
                                 </div>
 
