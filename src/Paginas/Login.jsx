@@ -26,7 +26,6 @@ function Login() {
 
     const rememberMeHandler = () => {
         rememberMe = !rememberMe
-        console.log(rememberMe)
     }
 
     const [justifyActive, setJustifyActive] = useState('tab1');
@@ -53,7 +52,6 @@ function Login() {
         try {
             await axios.post(`https://truthanswer-backend.onrender.com/users/${user}`, data).then(res => {
                 if (res.data.ok) {
-                    console.log(res.data)
                     if (rememberMe) {
                         window.localStorage.setItem('user', JSON.stringify(res.data));
                     } else {
@@ -83,7 +81,6 @@ function Login() {
         e.preventDefault()
         axios.post('https://truthanswer-backend.onrender.com/users', { nombre, username, email, password })
             .then(res => {
-                console.log(res.data)
             })
             .catch(err => console.log(err))
     }

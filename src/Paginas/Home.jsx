@@ -49,7 +49,6 @@ const Home = () => {
                             width={"100%"}
                             height={500}
                             onClick={() => toComponentB('Educación')}
-                            onKeyDown={console.log('si anda')}
                         />
                         <Carousel.Caption style={{ color: "white", fontWeight: 500, backgroundColor: "rgb(20, 20, 20,  0.5 )", textShadow: " -0.3px 0.3px 0 #000, 0.3px 0.3px 0 #000, 0.3px -0.3px 0 #000, -0.3px -0.3px 0 #000" }}>
                             <h5 style={{ fontSize: 20 }}>Educación</h5>

@@ -30,11 +30,11 @@ const Navbarsus = ({ changeMessage }) => {
             if (window.sessionStorage.getItem('user')) {
                 setLogged(true);
                 setLoggedUserData(JSON.parse((window.sessionStorage.getItem('user'))));
-                console.log('condicion 1')
+
             } else if (window.localStorage.getItem('user')) {
                 setLogged(true);
                 setLoggedUserData(JSON.parse((window.localStorage.getItem('user'))));
-                console.log('condicion 2')
+
             }
             else {
                 setLogged(false);

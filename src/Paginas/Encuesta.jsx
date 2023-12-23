@@ -70,10 +70,10 @@ function Administracion() {
         prevPregunta.push({ pregunta: element.value, respuestas: preguntasArray })
 
         setPreguntas(prevPregunta)
-        console.log(preguntas)
+
         preguntasArray = []
         refPreg.current.value = ""
-        console.log(ref.current)
+
     }
 
     //funcion que crea post y manda a la base de datos
@@ -90,15 +90,18 @@ function Administracion() {
                 anonimo: refAn.current.checked
             }
             e.preventDefault();
-            console.log(newFormValue)
             axios
                 .post("https://truthanswer-backend.onrender.com/adm", newFormValue)
                 .then((res) => {
-                    console.log(res)
                     setPreguntas([])
                     preguntasArray = []
+              
                 })
-                .catch((err) => console.log(err));
+                Swal.fire({
+                    title: 'Enhorabuena',
+                text: 'El proceso se ha realizado satisfactoriamente',
+                icon: 'success',
+                })
         } else {
             Swal.fire({
                 title: 'Error',

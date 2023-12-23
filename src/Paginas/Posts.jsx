@@ -39,11 +39,9 @@ function Posts() {
         if (sessionUser.userRole == 'admin' || localUser.userRole == 'admin') {
             axios.get("https://truthanswer-backend.onrender.com/posts")
                 .then((res) => {
-                    console.log(res);
                     setPosts(res.data);
                 })
                 .catch((err) => console.log(err))
-            console.log(postToUpdate.categoria, 'categoria')
         } else {
             Swal.fire({
                 title: 'Error',
@@ -59,7 +57,6 @@ function Posts() {
 
         axios.delete(`https://truthanswer-backend.onrender.com/delete/${id}`)
             .then(res => {
-                console.log(res)
                 Swal.fire({
                     title: 'Enhorabuena',
                     text: 'El proceso se ha realizado satisfactoriamente',
@@ -67,7 +64,6 @@ function Posts() {
                 })
             })
             .catch(err => {
-                console.log(err)
                 Swal.fire({
                     title: 'Algo ha salido mal',
                     text: err,
@@ -84,8 +80,6 @@ function Posts() {
 
 
     const saveUpdatedPost = () => {
-        console.log(postToUpdate)
-        console.log(postToUpdate._id)
         axios.put(`https://truthanswer-backend.onrender.com/posts/${postToUpdate._id}`, postToUpdate)
             .then(res => {
                 Swal.fire({
@@ -100,7 +94,7 @@ function Posts() {
             .catch(err => {
                 Swal.fire({
                     title: 'Algo ha salido mal',
-                    text: err,
+                    text: "La operación no se ha podido realizar",
                     icon: 'warning',
                 })
             });
