@@ -18,6 +18,7 @@ import twitter from "../assets/twitter.ico"
 import google from "../assets/google.ico"
 import github from "../assets/github.ico"
 import { Link } from 'react-router-dom';
+import Swal from "sweetalert2";
 
 
 function Login() {
@@ -57,7 +58,15 @@ function Login() {
                     } else {
                         window.sessionStorage.setItem('user', JSON.stringify(res.data));
                     }
-                    navegar('/Home')
+                    Swal.fire({
+                        title: 'Exito',
+                        text: 'Se inicio sesión con éxito',
+                        icon: 'success',
+                    })
+
+                    setTimeout(() => {
+                        navegar('/Home')
+                    }, 2000)
                 }
             })
         } catch (error) {
@@ -123,12 +132,12 @@ function Login() {
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
                                         <Link to={'/error'}>
-                                        <img src={google} alt="" style={{ width: 30, height: 30 }} /></Link>
+                                            <img src={google} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                    <Link to={'/error'}>
-                                        <img src={github} alt="" style={{ width: 30, height: 30 }} /></Link>
+                                        <Link to={'/error'}>
+                                            <img src={github} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
                                 </div>
 
@@ -158,23 +167,23 @@ function Login() {
 
                                 <div className='d-flex justify-content-between mx-auto' style={{ width: '40%' }}>
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                    <Link to={'/error'}>
-                                        <img src={facebook} alt="" style={{ width: 30, height: 30 }} /></Link>
+                                        <Link to={'/error'}>
+                                            <img src={facebook} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                    <Link to={'/error'}>
-                                        <img src={twitter} alt="" style={{ width: 30, height: 30 }} /></Link>
+                                        <Link to={'/error'}>
+                                            <img src={twitter} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                    <Link to={'/error'}>
-                                        <img src={google} alt="" style={{ width: 30, height: 30 }} /></Link>
+                                        <Link to={'/error'}>
+                                            <img src={google} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
 
                                     <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                    <Link to={'/error'}>
-                                        <img src={github} alt="" style={{ width: 30, height: 30 }} /></Link>
+                                        <Link to={'/error'}>
+                                            <img src={github} alt="" style={{ width: 30, height: 30 }} /></Link>
                                     </MDBBtn>
                                 </div>
 

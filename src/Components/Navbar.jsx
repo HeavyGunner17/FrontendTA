@@ -85,10 +85,10 @@ const Navbarsus = ({ changeMessage }) => {
 
                                 {logged ? (<div>
                                     <NavDropdown title={<span>{loggedUserData.user}<img alt="loggedIn" src={profile} width="28" height="28" /></span>} id="basic-nav-dropdown">
-                                        <NavDropdown.Item href={"/error"}>
+                                        <NavDropdown.Item onClick={() => navegar('/error')}>
                                             Configuración
                                         </NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.3" onClick={handleLogOut}>Cerrar Sesion</NavDropdown.Item>
+                                        <NavDropdown.Item onClick={handleLogOut}>Cerrar Sesion</NavDropdown.Item>
                                     </NavDropdown>
                                 </div>) :
                                     (<Nav.Link ><Button variant="warning" className="botonRegSub" onClick={() => navegar('/login')}>Iniciar sesion</Button>

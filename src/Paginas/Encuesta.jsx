@@ -25,7 +25,6 @@ function Administracion() {
 
 
 
-
         let sessionUser = '';
         let localUser = '';
 
@@ -122,7 +121,7 @@ function Administracion() {
                 <Form.Group>
 
 
-                    <Form.Control name="nombre" placeholder="Título de la encuesta" style={{ marginBottom: '1rem' }} ref={refNombre} />
+                    <Form.Control name="nombre" placeholder="Título de la encuesta" style={{ marginBottom: '1rem' }} ref={refNombre}/>
 
                     <Form.Select style={{ marginBottom: '1rem' }} ref={refCat}>
                         <option value="Educación">Educación</option>

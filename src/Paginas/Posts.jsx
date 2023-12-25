@@ -8,15 +8,13 @@ import Footer from '../Components/Footer'
 import Swal from 'sweetalert2'
 
 function Posts() {
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
     const navegar = useNavigate()
     const [show, setShow] = useState(false);
     const [postToUpdate, setPostToUpdate] = useState({ email: "", id: "", nombre: "", estado: "", preguntas: "", respuestas: "", categoria: "", anonimo: "" })
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-
 
 
 
@@ -53,9 +51,8 @@ function Posts() {
     }, [postToUpdate]);
 
 
-    const deletePost = (id) => {
-
-        axios.delete(`https://truthanswer-backend.onrender.com/delete/${id}`)
+    async function deletePost(id, index) {
+        await axios.delete(`https://truthanswer-backend.onrender.com/delete/${id}`)
             .then(res => {
                 Swal.fire({
                     title: 'Enhorabuena',
@@ -70,7 +67,9 @@ function Posts() {
                     icon: 'warning',
                 })
             });
-        window.location.reload();
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000); 
     };
 
     const updatePost = (id) => {
@@ -120,7 +119,7 @@ function Posts() {
             <Container>
                 <h1 className="text-center mb-3">Lista de Encuestas</h1>
 
-                {posts.length > 0 ? (posts.map((post) => {
+                {posts.length > 0 ? (posts.map((post, index) => {
                     return (
                         <div key={post._id}
                             style={{
@@ -157,7 +156,7 @@ function Posts() {
                             }))}
                             <div className="d-flex">
                                 <Button onClick={() => updatePost(post._id)} style={{ width: "100%", marginRight: "1rem" }}>Actualizar</Button>
-                                <Button onClick={() => deletePost(post._id)} style={{ width: "100%" }}>Borrar</Button></div>
+                                <Button onClick={() => deletePost(post._id, index)} style={{ width: "100%" }}>Borrar</Button></div>
                         </div>
                     )
                 })) : (<h3>No hay datos.</h3>)}
