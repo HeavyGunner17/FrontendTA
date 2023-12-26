@@ -16,12 +16,11 @@ function Administracion() {
     const refCat = useRef();
     const refAn = useRef();
 
-    
+
     const [errors, setErrors] = useState({});
     const [preguntas, setPreguntas] = useState([]);
     const [loggedMail, setLoggedMail] = useState();
-const [nombre, setNombre] = useState('');
-const [formData, setFormData] = useState({});
+    const [nombre, setNombre] = useState('');
 
     useEffect(() => {
 
@@ -84,18 +83,14 @@ const [formData, setFormData] = useState({});
                 preguntas: preguntasState,
                 anonimo: refAn.current.checked
             }
-            e.preventDefault();
             axios
                 .post("https://truthanswer-backend.onrender.com/adm", newFormValue)
                 .then((res) => {
-                    setPreguntas([])
-                    preguntasArray = []
                     Swal.fire({
                         title: 'Enhorabuena',
                         text: 'El proceso se ha realizado satisfactoriamente',
                         icon: 'success',
                     })
-
                 }).catch(err => {
                     Swal.fire({
                         title: 'Algo ha salido mal',
@@ -103,28 +98,30 @@ const [formData, setFormData] = useState({});
                         icon: 'warning',
                     })
                 })
+                refNombre.current.value = ""
+                setNombre('')
+                setPreguntas([])
+                preguntasArray = []
         } else {
             navegar('/login')
         }
     }
-    
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const validationErrors = {}
-        if(!formData.nombre.trim()){
+        if (!nombre.trim()) {
             validationErrors.nombre = "El titulo de la encuesta es necesario."
+            console.log('primer if')
         }
-    setErrors(validationErrors)
-    
-    if (Object.keys(validationErrors).length === 0){
-        Swal.fire({
-            title: 'Enhorabuena',
-        text: 'El proceso se ha realizado satisfactoriamente',
-        icon: 'success',
-        });
+        setErrors(validationErrors)
+     
+        if (Object.keys(validationErrors).length === 0) {
+            createPost()
+        }
     }
-    }
-    
+
 
 
     return (
@@ -135,11 +132,11 @@ const [formData, setFormData] = useState({});
                 <Form.Group>
 
                     <Form.Control name="nombre"
-                     placeholder="Título de la encuesta" 
-                     style={{ marginBottom: '1rem' }}
-                     required onChange={(e) => setNombre(e.target.value)} ref={refNombre}
-                     />
-                       {errors.nombre && <span>{errors.nombre}</span>}
+                        placeholder="Título de la encuesta"
+                        style={{ marginBottom: '1rem' }}
+                        onChange={(e) => setNombre(e.target.value)} ref={refNombre}
+                    />
+                    {errors.nombre && <span style={{ color: "red" }}>{errors.nombre}</span>}
 
                     <Form.Select style={{ marginBottom: '1rem' }} ref={refCat}>
                         <option value="Educación">Educación</option>
@@ -152,7 +149,7 @@ const [formData, setFormData] = useState({});
                             placeholder="Preguntas" style={{ marginBottom: '1rem' }} ref={refPreg} />
                         <Button style={{ height: 38, fontWeight: "bold" }}
                             variant="primary"
-                            onClick={() => agregarPregunta()}>Agregar Pregunta
+                            onClick={() => agregarPregunta()}>Agregar
                         </Button>
                     </div>
 
@@ -177,7 +174,7 @@ const [formData, setFormData] = useState({});
                         style={{ marginBottom: "15px" }}
                         ref={refAn}
                     />
-                    <Button onClick={createPost}>Enviar cuestionario</Button>
+                    <Button type="submit">Enviar cuestionario</Button>
                 </div>
             </Form>
             <Footer /> </Container>

@@ -129,7 +129,7 @@ function Posts() {
                             }}
                         >
                             <div className="d-flex justify-content-between">
-                                <h2 style={{ marginLeft: "10px" }}>{post.nombre}</h2>
+                                <h2 style={{ marginLeft: "10px" }}>Titulo: {post.nombre}</h2>
                                 <div style={{ marginRight: "10px" }}>
                                     <p>Estado: {post.estado}</p>
                                     <p>Categoría: {post.categoria}</p>
