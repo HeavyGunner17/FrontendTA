@@ -14,16 +14,16 @@ function Administracion() {
     const refPreg = useRef();
     const refNombre = useRef();
     const refCat = useRef();
-
     const refAn = useRef();
 
+    
+    const [errors, setErrors] = useState({});
     const [preguntas, setPreguntas] = useState([]);
     const [loggedMail, setLoggedMail] = useState();
-
+const [nombre, setNombre] = useState('');
+const [formData, setFormData] = useState({});
 
     useEffect(() => {
-
-
 
         let sessionUser = '';
         let localUser = '';
@@ -47,9 +47,6 @@ function Administracion() {
             navegar('/home')
         }
     }, [])
-
-
-
 
 
     let preguntasArray = []
@@ -94,34 +91,55 @@ function Administracion() {
                 .then((res) => {
                     setPreguntas([])
                     preguntasArray = []
-              
-                })
                 Swal.fire({
                     title: 'Enhorabuena',
                 text: 'El proceso se ha realizado satisfactoriamente',
                 icon: 'success',
                 })
-        } else {
-            Swal.fire({
-                title: 'Error',
-                text: 'No se ha iniciado sesión',
-                icon: 'warning',
-            })
+                .catch(err => {
+                    Swal.fire({
+                        title: 'Algo ha salido mal',
+                        text: err,
+                        icon: 'warning',
+                    })
+                })    
+        }) else { 
             navegar('/login')
         }
-
     };
+    
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const validationErrors = {}
+        if(!formData.nombre.trim()){
+            validationErrors.nombre = "El titulo de la encuesta es necesario."
+        }
+    setErrors(validationErrors)
+    
+    if (Object.keys(validationErrors).length === 0){
+        Swal.fire({
+            title: 'Enhorabuena',
+        text: 'El proceso se ha realizado satisfactoriamente',
+        icon: 'success',
+        });
+    }
+    }
+    
 
 
     return (
         <Container>
             <Navbar />
             <h2>Crear Encuesta</h2>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group>
 
-
-                    <Form.Control name="nombre" placeholder="Título de la encuesta" style={{ marginBottom: '1rem' }} ref={refNombre}/>
+                    <Form.Control name="nombre"
+                     placeholder="Título de la encuesta" 
+                     style={{ marginBottom: '1rem' }}
+                     required onChange={(e) => setNombre(e.target.value)} ref={refNombre}
+                     />
+                       {errors.nombre && <span>{errors.nombre}</span>}
 
                     <Form.Select style={{ marginBottom: '1rem' }} ref={refCat}>
                         <option value="Educación">Educación</option>
@@ -137,7 +155,6 @@ function Administracion() {
                             onClick={() => agregarPregunta()}>Agregar Pregunta
                         </Button>
                     </div>
-
 
 
                     <div style={{ display: "flex" }}>
