@@ -113,7 +113,6 @@ function Administracion() {
         const validationErrors = {}
         if (!nombre.trim()) {
             validationErrors.nombre = "El titulo de la encuesta es necesario."
-            console.log('primer if')
         }
         setErrors(validationErrors)
      
