@@ -74,7 +74,6 @@ const [formData, setFormData] = useState({});
 
     //funcion que crea post y manda a la base de datos
     function createPost(e) {
-
         if (window.sessionStorage.getItem('user') || window.localStorage.getItem('user')) {
             let preguntasState = preguntas
             let newFormValue = {
@@ -91,22 +90,23 @@ const [formData, setFormData] = useState({});
                 .then((res) => {
                     setPreguntas([])
                     preguntasArray = []
-                Swal.fire({
-                    title: 'Enhorabuena',
-                text: 'El proceso se ha realizado satisfactoriamente',
-                icon: 'success',
-                })
-                .catch(err => {
+                    Swal.fire({
+                        title: 'Enhorabuena',
+                        text: 'El proceso se ha realizado satisfactoriamente',
+                        icon: 'success',
+                    })
+
+                }).catch(err => {
                     Swal.fire({
                         title: 'Algo ha salido mal',
                         text: err,
                         icon: 'warning',
                     })
-                })    
-        }) else { 
+                })
+        } else {
             navegar('/login')
         }
-    };
+    }
     
     const handleSubmit = (e) => {
         e.preventDefault()
